@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="zh"><head>
-<title>PHP Filter链——基于oracle的文件读取攻击 - Hexo</title>
+<title>PHP Filter链——基于oracle的文件读取攻击 - Hello!</title>
 <meta charset="UTF-8">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 
-<link rel="shortcut icon" href="/images/1.png" type="image/png" />
+<link rel="shortcut icon" href="/images/1.ico" type="image/x-icon" />
 <meta name="description" content="简介​	一开始见这题今年红明谷的ezphp,利用文件包含来进行测信道攻击获得flag.php的源码,接着利用匿名类来执行命令.不过最初的原题是DownUnder CTF 2022 1&lt;?php file($_POST[0]);  ​	file读取一个文件，但不输出其内容.最终解法就是通过测信道攻击,用报错来预测根目录的flag的文件内容.  一.攻击原理大致分为3步:  通过iconv函数编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP Filter链——基于oracle的文件读取攻击">
-<meta property="og:url" content="http://m1racle20.github.io/2024/10/07/PHP%20Filter%E9%93%BE%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Eoracle%E7%9A%84%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%94%BB%E5%87%BB/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://m1racle-7.github.io/2024/10/07/PHP%20Filter%E9%93%BE%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Eoracle%E7%9A%84%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="Hello!">
 <meta property="og:description" content="简介​	一开始见这题今年红明谷的ezphp,利用文件包含来进行测信道攻击获得flag.php的源码,接着利用匿名类来执行命令.不过最初的原题是DownUnder CTF 2022 1&lt;?php file($_POST[0]);  ​	file读取一个文件，但不输出其内容.最终解法就是通过测信道攻击,用报错来预测根目录的flag的文件内容.  一.攻击原理大致分为3步:  通过iconv函数编">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213836.png">
@@ -19,8 +19,9 @@
 <meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213855.png">
 <meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213907.png">
 <meta property="article:published_time" content="2024-10-07T13:35:38.907Z">
-<meta property="article:modified_time" content="2024-10-07T13:39:28.397Z">
+<meta property="article:modified_time" content="2024-10-08T08:45:24.756Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213836.png">
 
@@ -28,15 +29,15 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1728373664390">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1728378547243">
 
-<link rel="stylesheet" href="/css/style.css?v=1728373664390">
+<link rel="stylesheet" href="/css/style.css?v=1728378547243">
 
 
 
 
     
-        <link rel="stylesheet" href="/custom.css?v=1728373664390">
+        <link rel="stylesheet" href="/custom.css?v=1728378547243">
     
 
 
@@ -46,7 +47,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1728373664390"></script>
+<script async src="/js/app.js?v=1728378547243"></script>
 
  
 
@@ -62,7 +63,7 @@
 
 
 <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
-<meta name="generator" content="Hexo 7.3.0"></head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/1.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="John Doe"><img src="/images/1.png" alt="John Doe"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+<meta name="generator" content="Hexo 7.3.0"></head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/MYGO.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="John Doe"><img src="/images/1.png" alt="John Doe"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="John Doe">
             <img src="/images/1.png" alt="John Doe" alt="John Doe">
@@ -70,8 +71,8 @@
     </div>
     <div class="nexmoe-count">
         <div><span>文章</span>2</div>
-        <div><span>标签</span>0</div>
-        <div><span>分类</span>0</div>
+        <div><span>标签</span>1</div>
+        <div><span>分类</span>1</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -96,13 +97,6 @@
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" target="_blank" rel="noopener" href="https://i.nexmoe.com/" title="关于博主">
-            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
-            <div class="mdui-list-item-content">
-                关于博主
-            </div>
-        </a>
-        
     </div>
     
     
@@ -122,19 +116,59 @@
 
     
         
-        <div class="nexmoe-widget-wrap">
-	<div class="nexmoe-widget nexmoe-social">
-		
-	</div>
-</div>
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/PHP/">PHP</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
 
     
         
         
-
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/PHP/" style="font-size: 10px;">PHP</a>
+    </div>
     
-        
-        
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(1);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
     
         
         
@@ -179,8 +213,8 @@
 </div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
   <article>
     
-        <div class="nexmoe-post-cover"> 
-            <img src="/images/1.png" alt="PHP Filter链——基于oracle的文件读取攻击" loading="lazy">
+        <div class="nexmoe-post-cover absolute" style="padding-top: 40%;"> 
+            <img src="https://www.loliapi.com/bg/" alt="PHP Filter链——基于oracle的文件读取攻击" loading="lazy">
             <h1>PHP Filter链——基于oracle的文件读取攻击</h1>
         </div>
     
@@ -188,6 +222,8 @@
     <div class="nexmoe-post-meta">
     <div class="nexmoe-rainbow">
         <a class="nexmoefont icon-calendar-fill">2024年10月07日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/PHP/">PHP</a>
         
         
     </div>
@@ -374,10 +410,12 @@
   <div class="nexmoe-post-meta nexmoe-rainbow">
    
     
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/PHP/" rel="tag">PHP</a>
+    
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1728373664371"></script>
+    <script async src="/js/copy-codeblock.js?v=1728378547194"></script>
   
 
   
@@ -406,4 +444,4 @@
         </div>
     </div>
 </div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
-</div></body></html>
+</div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":400,"height":400},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
