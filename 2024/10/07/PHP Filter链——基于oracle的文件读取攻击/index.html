@@ -13,31 +13,31 @@
 <meta property="og:site_name" content="Hello!">
 <meta property="og:description" content="简介​	一开始见这题今年红明谷的ezphp,利用文件包含来进行测信道攻击获得flag.php的源码,接着利用匿名类来执行命令.不过最初的原题是DownUnder CTF 2022 1&lt;?php file($_POST[0]);  ​	file读取一个文件，但不输出其内容.最终解法就是通过测信道攻击,用报错来预测根目录的flag的文件内容.  一.攻击原理大致分为3步:  通过iconv函数编">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213836.png">
-<meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213845.png">
-<meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213849.png">
-<meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213855.png">
-<meta property="og:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213836.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213845.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213849.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213855.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213907.png">
 <meta property="article:published_time" content="2024-10-07T13:35:38.907Z">
-<meta property="article:modified_time" content="2024-10-30T11:21:11.084Z">
+<meta property="article:modified_time" content="2024-10-31T01:37:46.426Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213836.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213836.png">
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1730287332579">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1730338691330">
 
-<link rel="stylesheet" href="/css/style.css?v=1730287332579">
+<link rel="stylesheet" href="/css/style.css?v=1730338691330">
 
 
 
 
     
-        <link rel="stylesheet" href="/custom.css?v=1730287332579">
+        <link rel="stylesheet" href="/custom.css?v=1730338691330">
     
 
 
@@ -47,7 +47,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1730287332579"></script>
+<script async src="/js/app.js?v=1730338691330"></script>
 
  
 
@@ -116,7 +116,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1730287332579"></script>
+	<script async src="/js/search.js?v=1730338691330"></script>
 
 
 
@@ -278,7 +278,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">file</span>(<span class="variable">$_POST</span>[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
 
 <p>​	<code>file</code>读取一个文件，但不输出其内容.最终解法就是通过测信道攻击,用报错来预测根目录的flag的文件内容.</p>
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213836.png" alt="image-20240526181459383" data-caption="image-20240526181459383" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213836.png" alt="image-20240526181459383" data-caption="image-20240526181459383" loading="lazy"></p>
 <h1 id="一-攻击原理"><a href="#一-攻击原理" class="headerlink" title="一.攻击原理"></a>一.攻击原理</h1><p>大致分为3步:</p>
 <ul>
 <li>通过iconv函数编码导致php产生内存报错</li>
@@ -291,12 +291,12 @@
 <p>UCS-4编码使用固定4个字节来表示每个字符,其中UCS-4LE即:使最低有效字节存储在最前面</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php -r &#x27;$string = &quot;START&quot;; echo strlen(iconv(&quot;UTF8&quot;, &quot;UCS-4LE&quot;, $string)).&quot;\n&quot;;&#x27;</span><br><span class="line">输出20</span><br><span class="line">php -r &#x27;$string = &quot;START&quot;; echo iconv(&quot;UTF8&quot;, &quot;UCS-4LE&quot;,iconv(&quot;UTF8&quot;, &quot;UCS-4LE&quot;, $string));&#x27; | xxd</span><br></pre></td></tr></table></figure>
 
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213845.png" alt="image-20240526140753648" data-caption="image-20240526140753648" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213845.png" alt="image-20240526140753648" data-caption="image-20240526140753648" loading="lazy"></p>
 <p>​	在php中,php.ini的memory_limit参数代表了资源限制,默认值为128MB,如果试图读取大于128MB的文件时就会触发内存错误.</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;memory_limit&#x27;</span>, <span class="string">&#x27;128M&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$string</span> = <span class="string">&quot;START&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span> &lt;= <span class="number">13</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="variable">$string</span> = <span class="title function_ invoke__">iconv</span>(<span class="string">&quot;UTF8&quot;</span>, <span class="string">&quot;UCS-4LE&quot;</span>, <span class="variable">$string</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>例如这串代码,将字符串START使用了13次UCS-4LE编码,产生内存错误</p>
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213849.png" alt="image-20240526135923121" data-caption="image-20240526135923121" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213849.png" alt="image-20240526135923121" data-caption="image-20240526135923121" loading="lazy"></p>
 <h2 id="2-使文件泄露第一个字符"><a href="#2-使文件泄露第一个字符" class="headerlink" title="2.使文件泄露第一个字符"></a>2.使文件泄露第一个字符</h2><p>​	在php文档中可以找到<a target="_blank" rel="noopener" href="https://github.com/php/php-src/blob/01b3fc03c30c6cb85038250bb5640be3a09c6a32/ext/standard/filters.c#L1724">php filter dechunk</a>这里,其中对字符处理时有限制,只能处理a-fA-F0-9这个区间中,这是因为对于http中的chunk编码是以16进制来表长度的,所以16进制字符范围在a-fA-F0-9这个范围内.</p>
 <p>​	根据源码可知,php支队第一个字节进行判断,第二个字节无关紧要.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">php &gt; var_dump(file_get_contents(&quot;php://filter/dechunk/resource=data:,a&quot;));</span><br><span class="line">string(0) &quot;&quot;</span><br><span class="line">php &gt; var_dump(file_get_contents(&quot;php://filter/dechunk/resource=data:,g&quot;));</span><br><span class="line">string(1) &quot;g&quot;</span><br><span class="line">php &gt; var_dump(file_get_contents(&quot;php://filter/dechunk/resource=data:,ga&quot;));</span><br><span class="line">string(2) &quot;ga&quot;</span><br><span class="line">php &gt; var_dump(file_get_contents(&quot;php://filter/dechunk/resource=data:,ag&quot;));</span><br><span class="line">string(0) &quot;&quot;</span><br></pre></td></tr></table></figure>
@@ -306,7 +306,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">当前flag文件首字母为a</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://filter/convert.base64-encode|convert.base64-encode|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE/resource=flag&quot;</span>));</span><br><span class="line">不报错</span><br><span class="line">再加一层</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://filter/convert.base64-encode|convert.base64-encode|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE/resource=flag&quot;</span>));</span><br><span class="line">报错</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://filter/dechunk/convert.base64-encode|convert.base64-encode|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE/resource=flag&quot;</span>));</span><br><span class="line">不报错</span><br></pre></td></tr></table></figure>
 
 <p>所以我们目前可以判断文件中的第一个字符是否在16进制编码这个范围内了,不过现在只能判断第一个字节,接下来就是处理剩余的字节了.</p>
-<h2 id="3-泄露剩余字节"><a href="#3-泄露剩余字节" class="headerlink" title="3.泄露剩余字节"></a>3.泄露剩余字节</h2><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213855.png" alt="image-20240526180050145" data-caption="image-20240526180050145" loading="lazy"></p>
+<h2 id="3-泄露剩余字节"><a href="#3-泄露剩余字节" class="headerlink" title="3.泄露剩余字节"></a>3.泄露剩余字节</h2><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213855.png" alt="image-20240526180050145" data-caption="image-20240526180050145" loading="lazy"></p>
 <h3 id="a-处理前4个字节"><a href="#a-处理前4个字节" class="headerlink" title="a.处理前4个字节"></a>a.处理前4个字节</h3><p>​	目前我们可以判断第一个字节了,由于我们使用的时php:&#x2F;&#x2F;filter,那么<strong>有没有一种编码可以交换字符串中的字符位置呢?</strong></p>
 <p>以此为目的我们可以寻找到:</p>
 <p><strong>convert.iconv.CSUNICODE.UCS-2BE</strong>这个编码规则,将unicode转成ucs-2BE,利用这个编码规则我们可以前后交换每两个字节的位置,将他称为<strong>r2</strong></p>
@@ -427,7 +427,7 @@
 <p><strong>借用rot13,可以将v-x转换成i-k的范围,然后复用上述步骤</strong></p>
 <p>此时我们解决了2<code>*6+3*2=18</code>个字母,还剩8个字母与数字来判断</p>
 <h3 id="检索数字"><a href="#检索数字" class="headerlink" title="检索数字"></a>检索数字</h3><p>​	在 Base64 编码中，因为编码规则都是相对固定的，尤其是相对字符串第一个字节来说，因为在 Base64 分组的时候，第一个字节可以直接编码得到 Base64 编码中的第一位，以 1 为例，如下：</p>
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://github.com/M1racle20/Tuchuang/raw/master/tuchuang20241007213907.png" alt="image-20240526175254298" data-caption="image-20240526175254298" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang20241007213907.png" alt="image-20240526175254298" data-caption="image-20240526175254298" loading="lazy"></p>
 <p>根据前面的我们现在可以判断所有字母了,也可以分清字母和数字了.</p>
 <p>所以倘若我们把所有数字提取到第一位,并进行一次base64编码,得到的编码结果我们再去判断第一位是什么字母,就可以大概推出数字的范围:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0-3 -&gt; M</span><br><span class="line">4-7 -&gt; N</span><br><span class="line">8-9 -&gt; O</span><br></pre></td></tr></table></figure>
@@ -455,7 +455,7 @@
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1730287332452"></script>
+    <script async src="/js/copy-codeblock.js?v=1730338691200"></script>
   
 
   
