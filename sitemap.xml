@@ -85,7 +85,7 @@
 
   <url>
     <loc>https://m1racle-7.github.io/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,28 +93,28 @@
   
   <url>
     <loc>https://m1racle-7.github.io/tags/CTF/</loc>
-    <lastmod>2024-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://m1racle-7.github.io/tags/PHP/</loc>
-    <lastmod>2024-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://m1racle-7.github.io/tags/linux/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://m1racle-7.github.io/tags/%E5%86%85%E7%BD%91/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://m1racle-7.github.io/tags/PHP/</loc>
+    <lastmod>2024-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://m1racle-7.github.io/tags/linux/</loc>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -123,28 +123,28 @@
   
   <url>
     <loc>https://m1racle-7.github.io/categories/CTF/</loc>
-    <lastmod>2024-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://m1racle-7.github.io/categories/PHP/</loc>
-    <lastmod>2024-11-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://m1racle-7.github.io/categories/linux/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://m1racle-7.github.io/categories/%E5%86%85%E7%BD%91/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://m1racle-7.github.io/categories/PHP/</loc>
+    <lastmod>2024-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://m1racle-7.github.io/categories/linux/</loc>
+    <lastmod>2024-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
