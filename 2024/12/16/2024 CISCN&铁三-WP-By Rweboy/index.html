@@ -58,6 +58,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734259657974-e84fab7f-0bda-412a-a3fc-95a09a3a7fe3.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734259729052-10f7bd56-12e9-4e80-8662-d5abb5eb6e4f.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734259884697-948511c4-8b1c-430b-bacb-ba6eb69c0c56.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/image-20241216091514431.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734262616067-a34129a9-b3b2-435d-af08-cbd217ac9c10.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734262183738-3a7b4430-a25e-42d8-8c18-7a34a14d775a.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734255282688-430c1f40-6f47-43c2-955c-7dfbabd35833.png">
@@ -72,7 +73,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734257968913-c00eb899-1361-4c7d-abbd-88c5cf00e75d.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734257837929-d2e86824-da78-4436-ad97-31922f0bbb38.png">
 <meta property="article:published_time" content="2024-12-16T00:46:17.902Z">
-<meta property="article:modified_time" content="2024-12-16T01:00:09.843Z">
+<meta property="article:modified_time" content="2024-12-16T01:15:42.999Z">
 <meta property="article:author" content="Miracle">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -82,15 +83,15 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1734310883167">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1734311759426">
 
-<link rel="stylesheet" href="/css/style.css?v=1734310883167">
+<link rel="stylesheet" href="/css/style.css?v=1734311759426">
 
 
 
 
     
-        <link rel="stylesheet" href="/custom.css?v=1734310883167">
+        <link rel="stylesheet" href="/custom.css?v=1734311759426">
     
 
 
@@ -100,7 +101,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1734310883167"></script>
+<script async src="/js/app.js?v=1734311759426"></script>
 
  
 
@@ -176,7 +177,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1734310883167"></script>
+	<script async src="/js/search.js?v=1734311759426"></script>
 
 
 
@@ -330,7 +331,7 @@
             <a class="nexmoefont icon-appstore-fill -link" href="/categories/CTF/">CTF</a>
         
         
-    <a><i class="nexmoefont icon-areachart"></i>约4.5k字</a>
+    <a><i class="nexmoefont icon-areachart"></i>约4.4k字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>预计需要22分钟</a>
 
     </div>
@@ -467,7 +468,7 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/1734259884697-948511c4-8b1c-430b-bacb-ba6eb69c0c56.png"></p>
 <h4 id="flag值：flag-memeallme"><a href="#flag值：flag-memeallme" class="headerlink" title="flag值：flag{memeallme!}"></a>flag值：flag{memeallme!}</h4><h2 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a><font style="color:black;">密码学</font></h2><h3 id="rasnd"><a href="#rasnd" class="headerlink" title="rasnd"></a>rasnd</h3><h4 id="操作内容：-12"><a href="#操作内容：-12" class="headerlink" title="操作内容："></a>操作内容：</h4><p><font style="color:rgb(51, 51, 51);">基本上和DownUnderCTF apbq rsa i一致，密码系统的漏洞在于$x_1,x_2$的位数太小了，我们可以对hint1和hint2两边分别乘上$x_2,x_1$，然后两式相减构造出因子$q$，这样一来我们就可以和模数$n$求gcd得到我们的p，q了，完整的推导过程如下</font></p>
-<p>$ x_2(hint_1+hex(114)&#x3D;x_1x_2p+x_2y_1q\<br>x_1(hint_2+hex(514)&#x3D;x_1x_2p+x_1y_2q\<br>x_2h_1-x_1h_2&#x3D;x_2y_1q-x_1y_2q $</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://cdn.jsdelivr.net/gh/M1racle-7/tuchuang/tuchuang/image-20241216091514431.png" alt="image-20241216091514431" data-caption="image-20241216091514431" loading="lazy"></p>
 <p><font style="color:rgb(51, 51, 51);">第一段flag的脚本拿maple的改改就行了</font></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n1 = <span class="number">12041484248912643032281827138855623754144214035159379257661479163138740691775879744970066188895287834305299993544492956391792960896102848747030186725527727462894712060700333010084161232292945341786532686079371670477415860442278642697221340583569645588845014599550638325912186989334147835969874061056581067882184577796454285728001596032991576548616505694738258644347926711399658118922938510938119887205321934129700411659944514995029920532395752664247590123953777766329926456117538440392869407741390284440815213055049158646992117671363087867033230162348771385273345393144890080701361216495994574190386498448916311816797</span></span><br><span class="line">c1 = <span class="number">10606131316309955980934489999367845331927443863828583686141238316607269050684817039429298888781427841737522428868990033129396359422071583487650116153933235992772589074023014756603570826140692683719646462908402695451323182710065741160367461533107537946979392683247488668328727583897596393913788430745564403219132250771930726681544778750383056036694256341891369906160656846870749190113082284100872538571850988590168260190474932411452384081833324921809119609733433067883975638920071176430344363427978212930714208437515478915112319607619770956843101985777866969917968203033417800410149877887005212278008964025655987940957</span></span><br><span class="line">hint1 = <span class="number">1210163329385529229728939135743311954497267498380547164909234906003973611593798031761260290741249172090725684217414693693114449324670072882779106749063248097663867799443199777334875204112817022790357889479347171489446008099356250837065466918892616549927163255749494695158589358908509028746798132552909553239850862487264153570503905570515124883</span></span><br><span class="line">hint2 = <span class="number">5051204836955493115902299043864227023948832461277034652488258835184221521626345855566463934505556519381805282442109159775267806057755363491698274342564684351612127794982915561668169373789547317570427657539052251405041553056803632890416687608340386053780952769614333767097202054166611376586274576239144083005297435121927157297060690207800186682896326015350219721047026234504118337172881814255423542199000966155216738725842757720428244680380446841837035234700310983</span></span><br><span class="line">apbq1 = hint1 + <span class="number">0x114</span></span><br><span class="line">apbq2 = hint2 + <span class="number">0x514</span></span><br><span class="line"></span><br><span class="line">h1, h2 = apbq1, apbq2</span><br><span class="line"><span class="keyword">for</span> a1, a2 <span class="keyword">in</span> product(trange(<span class="number">2</span>**<span class="number">12</span>), repeat=<span class="number">2</span>):</span><br><span class="line">    q = gcd(a1*h1 - a2*h2, n1)</span><br><span class="line">    <span class="keyword">if</span> q != <span class="number">1</span> <span class="keyword">and</span> q&lt;n1:</span><br><span class="line">        <span class="built_in">print</span>(q,n1)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">q = <span class="number">114411205592246972220921230297242077940657645574270285474331214662896407392806621491630870605100409685745977685037681045756459767749822052290189670280723035164949944851395458359172624983161919320250363279972807380631771541310372109230847026234642522745139142418827828880645203931389076624693764995135409308641</span></span><br><span class="line">p = n1 // q</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = invert(e, phi)</span><br><span class="line">flag = long_to_bytes(<span class="built_in">pow</span>(c1, d, n1))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 
@@ -524,7 +525,7 @@
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1734310883004"></script>
+    <script async src="/js/copy-codeblock.js?v=1734311759243"></script>
   
 
   
